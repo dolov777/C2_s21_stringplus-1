@@ -1,7 +1,6 @@
 #include <stdio.h>
-// #include <string.h>
 
-char *strstr(const char* haystack, const char* needle) {
+char *s21_strstr(const char* haystack, const char* needle) {
     if (!*needle) {
         return (char*)haystack;
     }

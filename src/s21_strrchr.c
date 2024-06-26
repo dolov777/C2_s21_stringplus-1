@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-char *strrchr(const char *str, int c) {
+char *s21_strrchr(const char *str, int c) {
     const char *elem = NULL;
     const char *count = str;
     

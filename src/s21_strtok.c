@@ -1,17 +1,7 @@
 #include <stdio.h>
+#include "s21_string.h"
 
-char *strchr(const char *str, int c) {
-    while(*str) {
-        if (*str == (char)c) {
-            return (char *)str;
-        }
-        str++;
-    }
-
-    return 0;
-}
-
-char *strtok(char *str, char *delim) {
+char *s21_strtok(char *str, char *delim) {
     static char *last = NULL;
     char *token;
     if (str != NULL) {
@@ -23,10 +13,9 @@ char *strtok(char *str, char *delim) {
         str = last;
     }
 
-    while(*str && strchr(delim, *str)) {
+    while(*str && s21_strchr(delim, *str)) {
         str++;
     }
-
     if (*str == '\0') {
         last = NULL;
         return NULL;
@@ -34,7 +23,7 @@ char *strtok(char *str, char *delim) {
 
     token = str;
 
-    while(*str && !strchr(delim, *str)) {
+    while(*str && !s21_strchr(delim, *str)) {
         str++;
     }
 

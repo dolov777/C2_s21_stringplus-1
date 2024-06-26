@@ -1,31 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "s21_string.h"
 
-int my_strlen(const char *src) {
-    int len = 0;
-    while(src[len] != '\0') {
-        len++;
-    }
-
-    return len;
-}
-
-void str_cpy(char *ch, const char *src) {
-    int len = 0;
-    while(src[len] != '\0') {
-        ch[len] = src[len];
-        len++;
-    }
-    ch[len] = '\0';
-}
-
-void *insert(const char *src, const char *str, size_t start_index) {
+void *s21_insert(const char *src, const char *str, size_t start_index) {
     if (!src || !str) {
         return NULL;
     }
 
-    size_t str_len = my_strlen(str);
-    size_t src_len = my_strlen(src);
+    size_t str_len = s21_strlen(str);
+    size_t src_len = s21_strlen(src);
 
     if (start_index > src_len) {
         return NULL;

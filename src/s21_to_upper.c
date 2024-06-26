@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 
-void *to_upper(const char *str) {
+void *s21_to_upper(const char *str) {
     int len = 0;
 
     if (str == NULL) {
@@ -26,6 +26,7 @@ void *to_upper(const char *str) {
         }
     }
     upper_str[len] = '\0';
+    
     return (void *)upper_str;
 }
 

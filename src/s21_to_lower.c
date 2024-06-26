@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void *to_lower(const char *str) {
+void *s21_to_lower(const char *str) {
     int len = 0;
     if (str == NULL) {
         return NULL;
@@ -24,6 +24,7 @@ void *to_lower(const char *str) {
         }
     }
     to_lower[len] = '\0';
+    
     return (void *)to_lower;
 }
 
