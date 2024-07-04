@@ -4,8 +4,8 @@ START_TEST(test_basic) {
     char *str = "hello world";
     char *c = 'o';
 
-    char *res_s21 = s21_strchr(str, c); 
-    char *res_orig = strchr(str, c);
+    char *res_s21 = s21_strrchr(str, c); 
+    char *res_orig = strrchr(str, c);
 
     ck_assert_ptr_eq(res_s21, res_orig);
 }
@@ -15,8 +15,8 @@ START_TEST(test_char_equals) {
     char *str = "o";
     char *c = 'o';
 
-    char *res_s21 = s21_strchr(str, c); 
-    char *res_orig = strchr(str, c);
+    char *res_s21 = s21_strrchr(str, c); 
+    char *res_orig = strrchr(str, c);
 
     ck_assert_ptr_eq(res_s21, res_orig);
 }
@@ -26,8 +26,8 @@ START_TEST(test_not_found) {
     char *str = "hello world";
     char *c = 'r';
 
-    char *res_s21 = s21_strchr(str, c); 
-    char *res_orig = strchr(str, c);
+    char *res_s21 = s21_strrchr(str, c); 
+    char *res_orig = strrchr(str, c);
 
     ck_assert_ptr_eq(res_s21, res_orig);
 }
@@ -37,8 +37,8 @@ START_TEST(test_str_empty) {
     char *str = "";
     char *c = 'o';
 
-    char *res_s21 = s21_strchr(str, c); 
-    char *res_orig = strchr(str, c);
+    char *res_s21 = s21_strrchr(str, c); 
+    char *res_orig = strrchr(str, c);
 
     ck_assert_ptr_eq(res_s21, res_orig);
 }
@@ -48,8 +48,8 @@ START_TEST(test_line_break) {
     char *str = "\0\0\0";
     char *c = '\0';
 
-    char *res_s21 = s21_strchr(str, c); 
-    char *res_orig = strchr(str, c);
+    char *res_s21 = s21_strrchr(str, c); 
+    char *res_orig = strrchr(str, c);
 
     ck_assert_ptr_eq(res_s21, res_orig);
 }
@@ -59,8 +59,8 @@ START_TEST(test_c_break) {
     char *str = "hello";
     char *c = '\0';
 
-    char *res_s21 = s21_strchr(str, c); 
-    char *res_orig = strchr(str, c);
+    char *res_s21 = s21_strrchr(str, c); 
+    char *res_orig = strrchr(str, c);
 
     ck_assert_ptr_eq(res_s21, res_orig);
 }
@@ -70,8 +70,8 @@ START_TEST(test_c_space) {
     char *str = "hello world ";
     char *c = ' ';
 
-    char *res_s21 = s21_strchr(str, c); 
-    char *res_orig = strchr(str, c);
+    char *res_s21 = s21_strrchr(str, c); 
+    char *res_orig = strrchr(str, c);
 
     ck_assert_ptr_eq(res_s21, res_orig);
 }
@@ -99,7 +99,7 @@ START_TEST(test_str_null) {
 }
 END_TEST
 
-Suite *strchr_suite(void) {
+Suite *strrchr_suite(void) {
     Suite *s = suite_create("suite_strrchr");
     TCase *tc = tcase_create("tc_strstr");
 

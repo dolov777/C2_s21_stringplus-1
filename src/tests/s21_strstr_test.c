@@ -7,7 +7,7 @@ START_TEST(test_basic) {
     char *res_s21 = s21_strstr(haystack, needle); 
     char *res_orig = strstr(haystack, needle);
 
-    ck_assert_ptr_eq(res_s21, res_orig);
+    ck_assert_str_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -18,7 +18,7 @@ START_TEST(test_str_equals) {
     char *res_s21 = s21_strstr(haystack, needle); 
     char *res_orig = strstr(haystack, needle);
 
-    ck_assert_ptr_eq(res_s21, res_orig);
+    ck_assert_str_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -29,7 +29,7 @@ START_TEST(test_not_found) {
     char *res_s21 = s21_strstr(haystack, needle); 
     char *res_orig = strstr(haystack, needle);
 
-    ck_assert_ptr_eq(res_s21, res_orig);
+    ck_assert_str_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -40,7 +40,7 @@ START_TEST(test_needle_empty) {
     char *res_s21 = s21_strstr(haystack, needle); 
     char *res_orig = strstr(haystack, needle);
 
-    ck_assert_ptr_eq(res_s21, res_orig);
+    ck_assert_str_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -51,7 +51,7 @@ START_TEST(test_haystack_empty) {
     char *res_s21 = s21_strstr(haystack, needle); 
     char *res_orig = strstr(haystack, needle);
 
-    ck_assert_ptr_eq(res_s21, res_orig);
+    ck_assert_str_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -62,7 +62,7 @@ START_TEST(test_both_empty) {
     char *res_s21 = s21_strstr(haystack, needle); 
     char *res_orig = strstr(haystack, needle);
 
-    ck_assert_ptr_eq(res_s21, res_orig);
+    ck_assert_str_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -73,13 +73,35 @@ START_TEST(test_partially_coincides) {
     char *res_s21 = s21_strstr(haystack, needle); 
     char *res_orig = strstr(haystack, needle);
 
+    ck_assert_str_eq(res_s21, res_orig);
+}
+END_TEST
+
+START_TEST(test_needle_larger) {
+    char *haystack = "hello world";
+    char *needle = "hello world hello world";
+
+    char *res_s21 = s21_strstr(haystack, needle); 
+    char *res_orig = strstr(haystack, needle);
+
+    ck_assert_str_eq(res_s21, res_orig);
+}
+END_TEST
+
+START_TEST(test_needle_null) {
+    char *haystack = "hello world";
+    char *needle = NULL;
+
+    char *res_s21 = s21_strstr(haystack, needle); 
+    char *res_orig = strstr(haystack, needle);
+
     ck_assert_ptr_eq(res_s21, res_orig);
 }
 END_TEST
 
-START_TEST(test_needler_larger) {
-    char *haystack = "hello world";
-    char *needle = "hello world hello world";
+START_TEST(test_haystack_null) {
+    char *haystack = NULL;
+    char *needle = "hello";
 
     char *res_s21 = s21_strstr(haystack, needle); 
     char *res_orig = strstr(haystack, needle);
@@ -99,8 +121,10 @@ Suite *strchr_suite(void) {
     tcase_add_test(tc, test_haystack_empty);
     tcase_add_test(tc, test_both_empty);
     tcase_add_test(tc, test_partially_coincides);
-    tcase_add_test(tc, test_needler_larger);
-    
+    tcase_add_test(tc, test_needle_larger);
+    tcase_add_test(tc, test_needle_null);
+    tcase_add_test(tc, test_haystack_null);
+
     suite_add_tcase(s, tc);
 
     return s;
