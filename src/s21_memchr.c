@@ -1,12 +1,12 @@
 #include "s21_string.h"
 
 void *s21_memchr(const void *str, int c, size_t n) {
-    const char *result = str;
+    const unsigned char *result = (const unsigned char *)str;
     int status = 0;
     int x = 0;
 
     while (status == 0 && result && (size_t)x < n) {
-        if (result[x] == c) {
+        if (result[x] == (unsigned char)c) { 
             if (c != '\0') {
                 result += x;
             }
