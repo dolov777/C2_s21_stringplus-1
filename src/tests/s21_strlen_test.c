@@ -4,7 +4,7 @@
 START_TEST(test_basic) {
     char *str = "Hello World";
 
-    size_t *res_s21 = s21_strlen(str); 
+    size_t res_s21 = s21_strlen(str); 
 
     ck_assert_int_eq(res_s21, 11);
 }
@@ -64,7 +64,7 @@ START_TEST(test_str_line_breaks) {
 }
 END_TEST
 
-Suite *strrchr_suite(void) {
+Suite *strlen_suite(void) {
     Suite *s = suite_create("suite_strrchr");
     TCase *tc = tcase_create("tc_strstr");
 

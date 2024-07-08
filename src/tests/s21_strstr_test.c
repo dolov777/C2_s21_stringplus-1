@@ -29,7 +29,7 @@ START_TEST(test_not_found) {
     char *res_s21 = s21_strstr(haystack, needle); 
     char *res_orig = strstr(haystack, needle);
 
-    ck_assert_str_eq(res_s21, res_orig);
+    ck_assert_ptr_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -51,7 +51,7 @@ START_TEST(test_haystack_empty) {
     char *res_s21 = s21_strstr(haystack, needle); 
     char *res_orig = strstr(haystack, needle);
 
-    ck_assert_str_eq(res_s21, res_orig);
+    ck_assert_ptr_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -84,33 +84,11 @@ START_TEST(test_needle_larger) {
     char *res_s21 = s21_strstr(haystack, needle); 
     char *res_orig = strstr(haystack, needle);
 
-    ck_assert_str_eq(res_s21, res_orig);
-}
-END_TEST
-
-START_TEST(test_needle_null) {
-    char *haystack = "hello world";
-    char *needle = NULL;
-
-    char *res_s21 = s21_strstr(haystack, needle); 
-    char *res_orig = strstr(haystack, needle);
-
     ck_assert_ptr_eq(res_s21, res_orig);
 }
 END_TEST
 
-START_TEST(test_haystack_null) {
-    char *haystack = NULL;
-    char *needle = "hello";
-
-    char *res_s21 = s21_strstr(haystack, needle); 
-    char *res_orig = strstr(haystack, needle);
-
-    ck_assert_ptr_eq(res_s21, res_orig);
-}
-END_TEST
-
-Suite *strchr_suite(void) {
+Suite *strstr_suite(void) {
     Suite *s = suite_create("suite_strrchr");
     TCase *tc = tcase_create("tc_strstr");
 
@@ -122,8 +100,6 @@ Suite *strchr_suite(void) {
     tcase_add_test(tc, test_both_empty);
     tcase_add_test(tc, test_partially_coincides);
     tcase_add_test(tc, test_needle_larger);
-    tcase_add_test(tc, test_needle_null);
-    tcase_add_test(tc, test_haystack_null);
 
     suite_add_tcase(s, tc);
 

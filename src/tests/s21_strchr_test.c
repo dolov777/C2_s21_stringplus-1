@@ -2,7 +2,7 @@
 
 START_TEST(test_basic) {
     char *str = "hello world";
-    char *c = 'o';
+    char c = 'o';
 
     char *res_s21 = s21_strchr(str, c); 
     char *res_orig = strchr(str, c);
@@ -13,7 +13,7 @@ END_TEST
 
 START_TEST(test_char_equals) {
     char *str = "o";
-    char *c = 'o';
+    char c = 'o';
 
     char *res_s21 = s21_strchr(str, c); 
     char *res_orig = strchr(str, c);
@@ -24,7 +24,7 @@ END_TEST
 
 START_TEST(test_not_found) {
     char *str = "hello world";
-    char *c = 'r';
+    char c = 'r';
 
     char *res_s21 = s21_strchr(str, c); 
     char *res_orig = strchr(str, c);
@@ -35,7 +35,7 @@ END_TEST
 
 START_TEST(test_str_empty) {
     char *str = "";
-    char *c = 'o';
+    char c = 'o';
 
     char *res_s21 = s21_strchr(str, c); 
     char *res_orig = strchr(str, c);
@@ -46,7 +46,7 @@ END_TEST
 
 START_TEST(test_line_break) {
     char *str = "\0\0\0";
-    char *c = '\0';
+    char c = '\0';
 
     char *res_s21 = s21_strchr(str, c); 
     char *res_orig = strchr(str, c);
@@ -57,7 +57,7 @@ END_TEST
 
 START_TEST(test_c_break) {
     char *str = "hello";
-    char *c = '\0';
+    char c = '\0';
 
     char *res_s21 = s21_strchr(str, c); 
     char *res_orig = strchr(str, c);
@@ -68,32 +68,10 @@ END_TEST
 
 START_TEST(test_c_space) {
     char *str = "hello world ";
-    char *c = ' ';
+    char c = ' ';
 
     char *res_s21 = s21_strchr(str, c); 
     char *res_orig = strchr(str, c);
-
-    ck_assert_ptr_eq(res_s21, res_orig);
-}
-END_TEST
-
-START_TEST(test_c_null) {
-    char *str = "hello world";
-    char *c = NULL;
-
-    char *res_s21 = s21_strstr(str, c); 
-    char *res_orig = strstr(str, c);
-
-    ck_assert_ptr_eq(res_s21, res_orig);
-}
-END_TEST
-
-START_TEST(test_str_null) {
-    char *str = NULL;
-    char *c = 'h';
-
-    char *res_s21 = s21_strstr(str, c); 
-    char *res_orig = strstr(str, c);
 
     ck_assert_ptr_eq(res_s21, res_orig);
 }
@@ -107,10 +85,9 @@ Suite *strchr_suite(void) {
     tcase_add_test(tc, test_char_equals);
     tcase_add_test(tc, test_not_found);
     tcase_add_test(tc, test_str_empty);
+    tcase_add_test(tc, test_line_break);
     tcase_add_test(tc, test_c_break);
     tcase_add_test(tc, test_c_space);
-    tcase_add_test(tc, test_c_null);
-    tcase_add_test(tc, test_str_null);
 
     suite_add_tcase(s, tc);
 
