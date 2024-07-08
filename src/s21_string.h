@@ -2,7 +2,11 @@
 #define SRC_S21_STRING_H_
 
 #include <stdio.h>
+#include <stdarg.h>
+#include <stdlib.h>
+
 #define s21_NULL ((void *)0)
+#define MAX_BUFFER_SIZE 1024
 
 // typedef long unsigned size_t;
 
@@ -20,6 +24,7 @@ char *s21_strerror(int errnum);
 char *s21_strchr(const char *str, int c);
 char *s21_strtok(char *str, char *delim);
 char *s21_strncpy(char *str1, const char *str2, size_t n);
+char *s21_sprintf(char *str, const char *format, ...);
 
 void *s21_to_lower(const char *str);
 void *s21_to_upper(const char *str);
