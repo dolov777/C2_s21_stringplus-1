@@ -9,6 +9,7 @@
 #define MAX_BUFFER_SIZE 1024
 
 #define s21_NULL ((void *)0)
+#define MAX_BUFFER_SIZE 1024
 
 typedef long unsigned s21_size_t;
 
