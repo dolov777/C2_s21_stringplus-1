@@ -8,8 +8,9 @@ char *s21_strchr(const char *str, int c) {
         str++;
     }
 
+    if (c == '\0') {
+        return (char *)str;
+    }
+
     return NULL;
 }
-
-
-
