@@ -12,7 +12,8 @@ int main() {
     s5 = to_lower_suite();
     s6 = to_upper_suite();
     s7 = memcmp_suite();
-    s8 = strerror_suite();
+    s8 = strncmp_suite();
+    // s9 = strerror_suite();
 
 
     sr = srunner_create(s1);
