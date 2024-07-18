@@ -10,7 +10,7 @@ Suite *strchr_suite(void);
 Suite *strstr_suite(void);
 Suite *strrchr_suite(void);
 Suite *strlen_suite(void);
-// Suite *strerror_suite(void);
+Suite *strerror_suite(void);
 Suite *memcmp_suite(void);
 
 Suite *to_lower_suite(void);
