@@ -28,11 +28,11 @@ START_TEST(test_str_numbers) {
 END_TEST
 
 START_TEST(test_str_null) {
-    char *str = NULL;
+    char *str = s21_NULL;
 
     char *res_s21 = s21_to_upper(str); 
 
-    ck_assert_ptr_eq(res_s21, NULL);
+    ck_assert_ptr_eq(res_s21, s21_NULL);
 }
 END_TEST
 
@@ -73,8 +73,8 @@ START_TEST(test_str_break) {
 END_TEST
 
 Suite *to_upper_suite(void) {
-    Suite *s = suite_create("suite_strrchr");
-    TCase *tc = tcase_create("tc_strstr");
+    Suite *s = suite_create("suite_to_upper");
+    TCase *tc = tcase_create("tc__to_upper");
 
     tcase_add_test(tc, test_basic);
     tcase_add_test(tc, test_str_upper);

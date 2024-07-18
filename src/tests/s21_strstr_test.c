@@ -89,7 +89,7 @@ START_TEST(test_needle_larger) {
 END_TEST
 
 Suite *strstr_suite(void) {
-    Suite *s = suite_create("suite_strrchr");
+    Suite *s = suite_create("suite_strstr");
     TCase *tc = tcase_create("tc_strstr");
 
     tcase_add_test(tc, test_basic);

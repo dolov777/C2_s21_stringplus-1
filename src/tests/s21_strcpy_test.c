@@ -14,8 +14,8 @@
 
 
 // Suite *strcpy_suite(void) {
-//     Suite *s = suite_create("suite_strrchr");
-//     TCase *tc = tcase_create("tc_strstr");
+//     Suite *s = suite_create("suite_strcpy");
+//     TCase *tc = tcase_create("tc_strcpy");
 
 //     tcase_add_test(tc, test_basic);
 //     tcase_add_test(tc, test_char_equals);

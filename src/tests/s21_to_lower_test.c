@@ -6,6 +6,7 @@ START_TEST(test_basic) {
     char *res_s21 = s21_to_lower(str); 
 
     ck_assert_str_eq(res_s21, "hello world");
+    free(res_s21);
 }
 END_TEST
 
@@ -15,6 +16,7 @@ START_TEST(test_str_lower) {
     char *res_s21 = s21_to_lower(str); 
 
     ck_assert_str_eq(res_s21, "hello world");
+    free(res_s21);
 }
 END_TEST
 
@@ -24,15 +26,18 @@ START_TEST(test_str_numbers) {
     char *res_s21 = s21_to_lower(str); 
 
     ck_assert_str_eq(res_s21, "12345");
+    free(res_s21);
 }
+
 END_TEST
 
 START_TEST(test_str_null) {
-    char *str = NULL;
+    char *str = s21_NULL;
 
     char *res_s21 = s21_to_lower(str); 
 
-    ck_assert_ptr_eq(res_s21, NULL);
+    ck_assert_ptr_eq(res_s21, s21_NULL);
+    free(res_s21);
 }
 END_TEST
 
@@ -42,6 +47,8 @@ START_TEST(test_str_spec_chars) {
     char *res_s21 = s21_to_lower(str); 
 
     ck_assert_str_eq(res_s21, "!@#$$^&*()_+");
+    free(res_s21);
+    
 }
 END_TEST
 
@@ -51,8 +58,10 @@ START_TEST(test_str_empty) {
     char *res_s21 = s21_to_lower(str); 
 
     ck_assert_str_eq(res_s21, "");
+    free(res_s21);
 }
 END_TEST
+
 
 START_TEST(test_str_space) {
     char *str = " ";
@@ -60,7 +69,9 @@ START_TEST(test_str_space) {
     char *res_s21 = s21_to_lower(str); 
 
     ck_assert_str_eq(res_s21, " ");
+    free(res_s21);
 }
+
 END_TEST
 
 START_TEST(test_str_break) {
@@ -69,12 +80,13 @@ START_TEST(test_str_break) {
     char *res_s21 = s21_to_lower(str); 
 
     ck_assert_str_eq(res_s21, "hello,\nworld!");
+    free(res_s21);
 }
 END_TEST
 
 Suite *to_lower_suite(void) {
-    Suite *s = suite_create("suite_strrchr");
-    TCase *tc = tcase_create("tc_strstr");
+    Suite *s = suite_create("suite_to_lower");
+    TCase *tc = tcase_create("tc_to_lower");
 
     tcase_add_test(tc, test_basic);
     tcase_add_test(tc, test_str_lower);

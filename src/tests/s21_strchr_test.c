@@ -78,8 +78,8 @@ START_TEST(test_c_space) {
 END_TEST
 
 Suite *strchr_suite(void) {
-    Suite *s = suite_create("suite_strrchr");
-    TCase *tc = tcase_create("tc_strstr");
+    Suite *s = suite_create("suite_strchr");
+    TCase *tc = tcase_create("tc_strchr");
 
     tcase_add_test(tc, test_basic);
     tcase_add_test(tc, test_char_equals);

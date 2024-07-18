@@ -79,7 +79,7 @@ END_TEST
 
 Suite *strrchr_suite(void) {
     Suite *s = suite_create("suite_strrchr");
-    TCase *tc = tcase_create("tc_strstr");
+    TCase *tc = tcase_create("tc_strrchr");
 
     tcase_add_test(tc, test_basic);
     tcase_add_test(tc, test_char_equals);
