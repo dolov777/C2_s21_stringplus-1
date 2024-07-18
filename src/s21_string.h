@@ -8,9 +8,6 @@
 #define s21_NULL ((void *)0)
 #define MAX_BUFFER_SIZE 1024
 
-#define s21_NULL ((void *)0)
-#define MAX_BUFFER_SIZE 1024
-
 typedef long unsigned s21_size_t;
 
 int s21_memcmp(const void *str1, const void *str2, size_t n);
