@@ -1,7 +1,7 @@
-#include <stdio.h>
+#include "s21_string.h"
 
 char *s21_strstr(const char* haystack, const char* needle) {
-    char *res = NULL;
+    char *res = s21_NULL;
 
     if (!*needle) {
         res = (char*)haystack;

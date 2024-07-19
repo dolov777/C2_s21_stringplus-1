@@ -1,7 +1,7 @@
-#include <stdio.h>
+#include "s21_string.h"
 
 char *s21_strrchr(const char *str, int c) {
-    const char *elem = NULL;
+    const char *elem = s21_NULL;
     const char *count = str;
     
     while (*count != '\0') {

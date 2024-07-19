@@ -1,7 +1,7 @@
-#include <stdio.h>
+#include "s21_string.h"
 
-char *s21_strncpy(char *str1, const char *str2, size_t n) {
-    size_t i;
+char *s21_strncpy(char *str1, const char *str2, s21_size_t n) {
+    s21_size_t i;
 
     // Копируем символы из str2 в str1 до n символов или пока не достигнем конца str2
     for (i = 0; i < n && str2[i] != '\0'; i++) {
