@@ -3,14 +3,16 @@
 #include "s21_string.h"
 
 int is_trim_char(char ch, const char *trim_chars) {
+    int res = 0;
     while(*trim_chars) {
         if (ch == *trim_chars) {
-            return 1;
+            res = 1;
+            break;
         }
         trim_chars++;
     }
 
-    return 0;
+    return res;
 }
 
 // void str_cpy(char *ch, const char *src, int length) {
@@ -21,30 +23,36 @@ int is_trim_char(char ch, const char *trim_chars) {
 // }
 
 void *s21_trim(const char *src, const char *trim_chars) {
-    if (!src || !trim_chars) {
-        return NULL;
+    char *res = NULL;
+
+    if (src && trim_chars) {
+        int start = 0;
+        int end = s21_strlen(src) - 1;
+
+        while (start <= end && is_trim_char(src[start], trim_chars)) {
+            start++;
+        }
+
+        while (end >= start && is_trim_char(src[end], trim_chars)) {
+            end--;
+        }
+
+        int length = end - start + 1;
+
+        if (length > 0) {
+            res = (char*)malloc((length + 1) * sizeof(char));
+            if (res) {
+                s21_strncpy(res, src + start, length);
+                res[length] = '\0';
+            }
+        } else if (length == 0) {
+            res = (char*)malloc(1 * sizeof(char));
+            if (res) {
+                res[0] = '\0';
+            }
+        }
     }
 
-    int start = 0;
-    int end = s21_strlen(src) - 1;
-
-    while(start <= end && is_trim_char(src[start], trim_chars)) {
-        start++;
-    }
-
-    while(end >= start && is_trim_char(src[end], trim_chars)) {
-        end--;
-    }
-    int length = end - start + 1;
-
-    char *result = (char*)malloc((length + 1) * sizeof(char));
-    
-    if (!result) {
-        return NULL;
-    }
-
-    s21_strncpy(result, src + start, length);
-
-    return result;
+    return res;
 }
 
