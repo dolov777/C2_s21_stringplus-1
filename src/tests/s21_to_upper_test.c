@@ -6,6 +6,7 @@ START_TEST(test_basic) {
     char *res_s21 = s21_to_upper(str); 
 
     ck_assert_str_eq(res_s21, "HELLO WORLD");
+    free(res_s21);
 }
 END_TEST
 
@@ -15,6 +16,7 @@ START_TEST(test_str_upper) {
     char *res_s21 = s21_to_upper(str); 
 
     ck_assert_str_eq(res_s21, "HELLO WORLD");
+    free(res_s21);
 }
 END_TEST
 
@@ -24,6 +26,7 @@ START_TEST(test_str_numbers) {
     char *res_s21 = s21_to_upper(str); 
 
     ck_assert_str_eq(res_s21, "12345");
+    free(res_s21);
 }
 END_TEST
 
@@ -33,6 +36,7 @@ START_TEST(test_str_null) {
     char *res_s21 = s21_to_upper(str); 
 
     ck_assert_ptr_eq(res_s21, s21_NULL);
+    free(res_s21);
 }
 END_TEST
 
@@ -42,6 +46,7 @@ START_TEST(test_str_spec_chars) {
     char *res_s21 = s21_to_upper(str); 
 
     ck_assert_str_eq(res_s21, "!@#$$^&*()_+");
+    free(res_s21);
 }
 END_TEST
 
@@ -51,6 +56,7 @@ START_TEST(test_str_empty) {
     char *res_s21 = s21_to_upper(str); 
 
     ck_assert_str_eq(res_s21, "");
+    free(res_s21);
 }
 END_TEST
 
@@ -60,6 +66,7 @@ START_TEST(test_str_space) {
     char *res_s21 = s21_to_upper(str); 
 
     ck_assert_str_eq(res_s21, " ");
+    free(res_s21);
 }
 END_TEST
 
@@ -69,6 +76,7 @@ START_TEST(test_str_break) {
     char *res_s21 = s21_to_upper(str); 
 
     ck_assert_str_eq(res_s21, "HELLO,\nWORLD!");
+    free(res_s21);
 }
 END_TEST
 
