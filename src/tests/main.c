@@ -2,7 +2,7 @@
 
 int main() {
     int number_failed;
-    Suite *s1, *s2, *s3, *s4, *s5, *s6, *s7, *s8, *s9, *s10, *s11, *s12, *s13, *s14, *s15, *s16, *s17, *s18, *s19; 
+    Suite *s1, *s2, *s3, *s4, *s5, *s6, *s7, *s8, *s9, *s10, *s11, *s12, *s13, *s14, *s15, *s16, *s17, *s18, *s19, *s20; 
     SRunner *sr;
 
     s1 = strchr_suite();
@@ -24,6 +24,7 @@ int main() {
     s17 = strncat_suite();
     s18 = strncpy_suite();
     s19 = memcpy_suite();
+    s20 = sprintf_suite();
 
     sr = srunner_create(s1);
     srunner_add_suite(sr, s2);
@@ -44,6 +45,7 @@ int main() {
     srunner_add_suite(sr, s17);
     srunner_add_suite(sr, s18);
     srunner_add_suite(sr, s19);
+    srunner_add_suite(sr, s20);
     srunner_run_all(sr, CK_NORMAL);
     number_failed = srunner_ntests_failed(sr);
     srunner_free(sr);

@@ -21,6 +21,7 @@ Suite *strcspn_suite(void);
 Suite *strncat_suite(void);
 Suite *strncpy_suite(void);
 Suite *memcpy_suite(void);
+Suite *sprintf_suite(void);
 
 
 Suite *trim_suite(void);
