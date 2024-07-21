@@ -27,8 +27,8 @@ START_TEST(test_full) {
 END_TEST
 
 START_TEST(test_str_empty) {
-    char str1[] = "";
-    char str2[] = "";
+    char str1[10] = "";
+    char str2[10] = "";
     char c = 'A';
     int n = 1;
 
@@ -93,8 +93,8 @@ END_TEST
 
 
 START_TEST(test_n_larger) {
-    char str1[] = "hello world";
-    char str2[] = "hello world";
+    char str1[100] = "hello world";
+    char str2[100] = "hello world";
     char c = '^';
     int n = 20;
 

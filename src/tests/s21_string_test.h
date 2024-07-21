@@ -19,6 +19,8 @@ Suite *memset_suite(void);
 Suite *memchr_suite(void);
 Suite *strcspn_suite(void);
 Suite *strncat_suite(void);
+Suite *strncpy_suite(void);
+Suite *memcpy_suite(void);
 
 
 Suite *trim_suite(void);
