@@ -17,6 +17,11 @@ all: $(LIBNAME)
 test: $(LIBNAME) 
 	$(CC) $(CFLAGS) $(TEST_CSRC) -L . $(LIBNAME) -o ./$(TEST_DIR)/run_tests -lcheck -lsubunit -lm
 	./$(TEST_DIR)/run_tests 
+	
+check:
+	clang-format -style='{BasedOnStyle: Google}' -n *.c */*.c
+	clang-format -style='{BasedOnStyle: Google}' -n *.h */*.h
+	cppcheck --enable=all --suppress=missingIncludeSystem *.c *.h	
 
 $(LIBNAME): $(COBJ)
 	ar rcs $@ $^

@@ -94,7 +94,7 @@ END_TEST
 START_TEST(test_len_larger) {
   char dest_s21[20] = "hello";
   char dest[20] = "hello";
-  char src[] = "world";
+  char src[20] = "world";
   int len = 20;
 
   char *res_s21 = s21_memcpy(dest_s21, src, len);
@@ -107,7 +107,7 @@ END_TEST
 START_TEST(test_line_break) {
   char dest_s21[20] = "\0\0\0\0";
   char dest[20] = "\0\0\0\0";
-  char src[] = "world\0";
+  char src[20] = "world\0";
   int len = 20;
 
   char *res_s21 = s21_memcpy(dest_s21, src, len);

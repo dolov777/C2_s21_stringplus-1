@@ -45,67 +45,67 @@ void processSpecifier(const char **format, va_list args, char **ptr,
                       int *length, int width, int precision,
                       char lengthModifier) {
   switch (**format) {
-    case 'd': {
-      long value = va_arg(args, long);
-      if (lengthModifier == 'h') {
-        value = (short)value;
-      }
-      int written = snprintf(*ptr, MAX_BUFFER_SIZE - (*ptr - *ptr), "%*.*ld",
-                             width, precision, value);
-      *ptr += written;
-      *length += written;
-      break;
+  case 'd': {
+    long value = va_arg(args, long);
+    if (lengthModifier == 'h') {
+      value = (short)value;
     }
-    case 'c': {
-      int value = va_arg(args, int);
-      **ptr = (char)value;
+    int written = snprintf(*ptr, MAX_BUFFER_SIZE - (*ptr - *ptr), "%*.*ld",
+                           width, precision, value);
+    *ptr += written;
+    *length += written;
+    break;
+  }
+  case 'c': {
+    int value = va_arg(args, int);
+    **ptr = (char)value;
+    (*ptr)++;
+    (*length)++;
+    break;
+  }
+  case 's': {
+    char *value = va_arg(args, char *);
+    int i = 0;
+    while (value[i] != '\0' && (precision == -1 || i < precision)) {
+      **ptr = value[i];
       (*ptr)++;
-      (*length)++;
-      break;
+      i++;
     }
-    case 's': {
-      char *value = va_arg(args, char *);
-      int i = 0;
-      while (value[i] != '\0' && (precision == -1 || i < precision)) {
-        **ptr = value[i];
-        (*ptr)++;
-        i++;
-      }
-      *length += i;
-      break;
+    *length += i;
+    break;
+  }
+  case 'u': {
+    unsigned long value = va_arg(args, unsigned long);
+    if (lengthModifier == 'h') {
+      value = (unsigned short)value;
     }
-    case 'u': {
-      unsigned long value = va_arg(args, unsigned long);
-      if (lengthModifier == 'h') {
-        value = (unsigned short)value;
-      }
-      int written = snprintf(*ptr, MAX_BUFFER_SIZE - (*ptr - *ptr), "%*.*lu",
-                             width, precision, value);
-      *ptr += written;
-      *length += written;
-      break;
-    }
-    case 'f': {
-      double value = va_arg(args, double);
-      int written = snprintf(*ptr, MAX_BUFFER_SIZE - (*ptr - *ptr), "%*.*f",
-                             width, precision, value);
-      *ptr += written;
-      *length += written;
-      break;
-    }
-    case '%': {
-      **ptr = '%';
-      (*ptr)++;
-      (*length)++;
-      break;
-    }
-    default:
-      **ptr = '%';
-      (*ptr)++;
-      **ptr = **format;
-      (*ptr)++;
-      *length += 2;
-      break;
+    int written = snprintf(*ptr, MAX_BUFFER_SIZE - (*ptr - *ptr), "%*.*lu",
+                           width, precision, value);
+    *ptr += written;
+    *length += written;
+    break;
+  }
+  case 'f': {
+    double value = va_arg(args, double);
+    int written = snprintf(*ptr, MAX_BUFFER_SIZE - (*ptr - *ptr), "%*.*f",
+                           width, precision, value);
+    *ptr += written;
+    *length += written;
+    break;
+  }
+  case '%': {
+    **ptr = '%';
+    (*ptr)++;
+    (*length)++;
+    break;
+  }
+  default:
+    **ptr = '%';
+    (*ptr)++;
+    **ptr = **format;
+    (*ptr)++;
+    *length += 2;
+    break;
   }
 }
 
