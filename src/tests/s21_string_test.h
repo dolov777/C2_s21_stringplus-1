@@ -1,10 +1,11 @@
 #ifndef STRING_TEST_H
 #define STRING_TEST_H
 
-#include "../s21_string.h"
 #include <check.h>
 #include <stddef.h>
 #include <string.h>
+
+#include "../s21_string.h"
 
 Suite *strchr_suite(void);
 Suite *strstr_suite(void);
@@ -22,7 +23,6 @@ Suite *strncat_suite(void);
 Suite *strncpy_suite(void);
 Suite *memcpy_suite(void);
 Suite *sprintf_suite(void);
-
 
 Suite *trim_suite(void);
 Suite *insert_suite(void);

@@ -83,18 +83,18 @@ START_TEST(test_spaces) {
 END_TEST
 
 Suite *trim_suite(void) {
-    Suite *s = suite_create("suite_trim");
-    TCase *tc = tcase_create("tc_trim");
+  Suite *s = suite_create("suite_trim");
+  TCase *tc = tcase_create("tc_trim");
 
-    tcase_add_test(tc, test_basic);
-    tcase_add_test(tc, test_not_found);
-    tcase_add_test(tc, test_break);
-    tcase_add_test(tc, test_src_null);
-    tcase_add_test(tc, test_trim_chars_null);
-    tcase_add_test(tc, test_line_break);
-    tcase_add_test(tc, test_spaces);
+  tcase_add_test(tc, test_basic);
+  tcase_add_test(tc, test_not_found);
+  tcase_add_test(tc, test_break);
+  tcase_add_test(tc, test_src_null);
+  tcase_add_test(tc, test_trim_chars_null);
+  tcase_add_test(tc, test_line_break);
+  tcase_add_test(tc, test_spaces);
 
-    suite_add_tcase(s, tc);
+  suite_add_tcase(s, tc);
 
-    return s;
+  return s;
 }

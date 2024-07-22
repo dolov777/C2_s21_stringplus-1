@@ -1,11 +1,11 @@
 #ifndef SRC_S21_STRING_H_
 #define SRC_S21_STRING_H_
 
-#include <stdio.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <stddef.h>
 #include <errno.h>
+#include <stdarg.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #define s21_NULL ((void *)0)
 #define MAX_BUFFER_SIZE 1024
@@ -24,7 +24,7 @@ size_t s21_strlen(const char *str);
 char *s21_strncat(char *dest, const char *src, s21_size_t n);
 char *s21_strpbrk(const char *str1, const char *str2);
 char *s21_strrchr(const char *str, int c);
-char *s21_strstr(const char* haystack, const char* needle);
+char *s21_strstr(const char *haystack, const char *needle);
 char *s21_strerror(int errnum);
 char *s21_strchr(const char *str, int c);
 char *s21_strtok(char *str, const char *delim);
@@ -38,5 +38,4 @@ void *s21_memcpy(void *dest, const void *src, s21_size_t n);
 void *s21_memset(void *str, int c, s21_size_t n);
 void *s21_insert(const char *src, const char *str, s21_size_t start_index);
 
-
-#endif  
+#endif

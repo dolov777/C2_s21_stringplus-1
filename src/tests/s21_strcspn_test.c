@@ -1,6 +1,5 @@
 #include "s21_string_test.h"
 
-
 START_TEST(test_basic) {
   char str1[] = "Hello, world!\n";
   char str2[] = "hello";
@@ -67,7 +66,6 @@ START_TEST(test_both_empty) {
 }
 END_TEST
 
-
 START_TEST(test_break) {
   char str1[] = "hello\n\n";
   char str2[] = "\n";
@@ -90,22 +88,20 @@ START_TEST(test_symbols_two) {
 }
 END_TEST
 
-
-
 Suite *strcspn_suite(void) {
-    Suite *s = suite_create("suite_strcspn");
-    TCase *tc = tcase_create("tc_strcspn");
+  Suite *s = suite_create("suite_strcspn");
+  TCase *tc = tcase_create("tc_strcspn");
 
-    tcase_add_test(tc, test_basic);
-    tcase_add_test(tc, test_number);
-    tcase_add_test(tc, test_symbols);
-    tcase_add_test(tc, test_str1_empty);
-    tcase_add_test(tc, test_str2_empty);
-    tcase_add_test(tc, test_both_empty);
-    tcase_add_test(tc, test_break);
-    tcase_add_test(tc, test_symbols_two);
+  tcase_add_test(tc, test_basic);
+  tcase_add_test(tc, test_number);
+  tcase_add_test(tc, test_symbols);
+  tcase_add_test(tc, test_str1_empty);
+  tcase_add_test(tc, test_str2_empty);
+  tcase_add_test(tc, test_both_empty);
+  tcase_add_test(tc, test_break);
+  tcase_add_test(tc, test_symbols_two);
 
-    suite_add_tcase(s, tc);
+  suite_add_tcase(s, tc);
 
-    return s;
+  return s;
 }
