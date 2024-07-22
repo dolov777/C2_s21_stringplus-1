@@ -9,8 +9,9 @@
 
 #define s21_NULL ((void *)0)
 #define MAX_BUFFER_SIZE 1024
-#define MIN_ERRLIST 0
-#define MAX_ERRLIST 73
+#define MAX_BUFFER_SIZE 1024
+
+#define MAX_ERRLIST 256
 
 typedef unsigned long s21_size_t;
 
