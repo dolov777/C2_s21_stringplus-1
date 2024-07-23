@@ -30,6 +30,10 @@ check:
 	clang-format -style='{BasedOnStyle: Google}' -n *.h */*.h
 	cppcheck --enable=all --suppress=missingIncludeSystem *.c *.h	
 
+clang:
+	clang-format -style='{BasedOnStyle: Google}' -i *.c */*.c
+	clang-format -style='{BasedOnStyle: Google}' -i *.h */*.h
+
 $(LIBNAME): $(COBJ)
 	ar rcs $@ $^
 	ranlib $@
