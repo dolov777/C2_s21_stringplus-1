@@ -7,12 +7,19 @@ TEST_DIR = tests
 
 CSRC = $(wildcard s21*.c)
 TEST_CSRC = $(wildcard $(TEST_DIR)/*.c)
+OFILES=$(patsubst %.c, %.o, $(CFILES))
+
 COBJ = $(CSRC:.c=.o)
 LIBNAME = s21_string.a
 
 .PHONY: all clean test gcov_report
 
-all: $(LIBNAME)
+all: $(LIBNAME) s21_string.a
+
+s21_string.a: $(CSRC)
+	$(CC) -c $(CFLAGS) $(CSRC)
+	ar rcs $@ $(OFILES)
+	ranlib $@
 
 test: $(LIBNAME) 
 	$(CC) $(CFLAGS) $(TEST_CSRC) -L . $(LIBNAME) -o ./$(TEST_DIR)/run_tests -lcheck -lsubunit -lm

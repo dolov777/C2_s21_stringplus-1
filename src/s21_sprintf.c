@@ -1,6 +1,6 @@
 #include "s21_string.h"
 
-void itoa(int value, char *str, int base) {
+void s21_itoa(int value, char *str, int base) {
     char *ptr = str, *ptr1 = str, tmp_char;
     int tmp_value;
 
@@ -24,7 +24,7 @@ void itoa(int value, char *str, int base) {
     }
 }
 
-void uittoa(unsigned int value, char *str, int base) {
+void s21_uittoa(unsigned int value, char *str, int base) {
     char *ptr = str, *ptr1 = str, tmp_char;
     int tmp_value;
 
@@ -130,7 +130,7 @@ int s21_sprintf(char *buffer, const char *format, ...) {
                 if (i >= 0 && (plus_sign || space_sign)) {
                     *buffer++ = plus_sign ? '+' : ' ';
                 }
-                itoa(i, buf, 10);
+                s21_itoa(i, buf, 10);
                 str = buf;
                 break;
             case 'u':
@@ -143,7 +143,7 @@ int s21_sprintf(char *buffer, const char *format, ...) {
                 } else {
                     u = va_arg(args, unsigned int);
                 }
-                uittoa(u, buf, 10);
+                s21_uittoa(u, buf, 10);
                 str = buf;
                 break;
             case 'o':
@@ -159,7 +159,7 @@ int s21_sprintf(char *buffer, const char *format, ...) {
                 if (hash_flag && u != 0) {
                     *buffer++ = '0';
                 }
-                uittoa(u, buf, 8);
+                s21_uittoa(u, buf, 8);
                 str = buf;
                 break;
             case 'x':
@@ -176,7 +176,7 @@ int s21_sprintf(char *buffer, const char *format, ...) {
                     *buffer++ = '0';
                     *buffer++ = 'x';
                 }
-                uittoa(u, buf, 16);
+                s21_uittoa(u, buf, 16);
                 str = buf;
                 break;
             case 'X':
@@ -193,7 +193,7 @@ int s21_sprintf(char *buffer, const char *format, ...) {
                     *buffer++ = '0';
                     *buffer++ = 'X';
                 }
-                uittoa(u, buf, 16);
+                s21_uittoa(u, buf, 16);
                 for (char *p = buf; *p; p++) *p = toupper(*p);
                 str = buf;
                 break;
@@ -216,7 +216,7 @@ int s21_sprintf(char *buffer, const char *format, ...) {
             case 's':
                 str = va_arg(args, char *);
                 if (precision >= 0) {
-                    strncpy(buf, str, precision);
+                    s21_strncpy(buf, str, precision);
                     buf[precision] = '\0';
                     str = buf;
                 }
@@ -238,7 +238,7 @@ int s21_sprintf(char *buffer, const char *format, ...) {
                 break;
         }
 
-        int len = strlen(str);
+        int len = s21_strlen(str);
         int padding = (width > len) ? width - len : 0;
 
         if (!left_align) {
