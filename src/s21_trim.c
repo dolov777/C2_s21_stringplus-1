@@ -30,13 +30,13 @@ void *s21_trim(const char *src, const char *trim_chars) {
 
     int length = end - start + 1;
 
-    if (length > 0) {
+    if (length >= 0) {
       res = (char *)malloc((length + 1) * sizeof(char));
       if (res) {
         s21_strncpy(res, src + start, length);
         res[length] = '\0';
       }
-    } else if (length == 0) {
+    } else {
       res = (char *)malloc(1 * sizeof(char));
       if (res) {
         res[0] = '\0';

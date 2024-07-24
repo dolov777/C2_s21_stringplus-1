@@ -7,7 +7,6 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #define s21_NULL ((void *)0)
 #define MAX_BUFFER_SIZE 1024
