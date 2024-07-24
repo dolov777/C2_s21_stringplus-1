@@ -25,7 +25,8 @@ void s21_itoa(int value, char *str, int base) {
 }
 
 void s21_uittoa(unsigned int value, char *str, int base) {
-    char *ptr = str, *ptr1 = str, tmp_char;
+    char *ptr = str;
+    char tmp_char;
     int tmp_value;
 
     do {
@@ -36,10 +37,10 @@ void s21_uittoa(unsigned int value, char *str, int base) {
 
     *ptr-- = '\0';
 
-    while (ptr1 < ptr) {
+    while (ptr >= str) {
         tmp_char = *ptr;
-        *ptr-- = *ptr1;
-        *ptr1++ = tmp_char;
+        *ptr-- = *str;
+        *str++ = tmp_char;
     }
 }
 
@@ -218,8 +219,16 @@ int s21_sprintf(char *buffer, const char *format, ...) {
                 } else {
                     i = va_arg(args, int);
                 }
-                if (i >= 0 && (plus_sign || space_sign)) {
-                    *buffer++ = plus_sign ? '+' : ' ';
+                if (i < 0) {
+                    *buffer++ = '-';
+                    written++;
+                    i = -i;
+                } else if (plus_sign) {
+                    *buffer++ = '+';
+                    written++;
+                } else if (space_sign) {
+                    *buffer++ = ' ';
+                    written++;
                 }
                 s21_itoa(i, buf, 10);
                 str = buf;
@@ -325,7 +334,7 @@ int s21_sprintf(char *buffer, const char *format, ...) {
             case 'n':
                 int *n = va_arg(args, int *);
                 *n = written;
-                break;
+                continue;
             default:
                 str = "";
                 break;
@@ -342,11 +351,13 @@ int s21_sprintf(char *buffer, const char *format, ...) {
 
         while (*str) {
             *buffer++ = *str++;
+            written++;
         }
 
         if (left_align) {
             while (padding-- > 0) {
                 *buffer++ = ' ';
+                written++;
             }
         }
     }
