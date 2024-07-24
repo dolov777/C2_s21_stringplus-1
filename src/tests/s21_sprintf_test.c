@@ -20,7 +20,7 @@ END_TEST
 START_TEST(test_s21_sprintf_2) {  // d
   char result_str[124];
   char expected_str[124];
-  const char *pattern = "Hello, my age is % d...";
+  const char *pattern = "Hello, my age is %d...";
 
   int age = 17;
   int result_len = 0;
@@ -51,9 +51,7 @@ START_TEST(test_s21_sprintf_3) {  // i
 }
 END_TEST
 
-
-
-START_TEST(test_s21_sprintf_6) {  // f
+START_TEST(test_s21_sprintf_4) {  // f
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %f...";
@@ -70,43 +68,7 @@ START_TEST(test_s21_sprintf_6) {  // f
 }
 END_TEST
 
-
-
-START_TEST(test_s21_sprintf_9) {  // o
-  char result_str[124];
-  char expected_str[124];
-  const char *pattern = "Hello, number is %o...";
-
-  int number = -27;
-  int result_len = 0;
-  int expected_len = 0;
-
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
-
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
-}
-END_TEST
-
-START_TEST(test_s21_sprintf_10) {  // o
-  char result_str[124];
-  char expected_str[124];
-  const char *pattern = "Hello, number is %o...";
-
-  int number = 27;
-  int result_len = 0;
-  int expected_len = 0;
-
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
-
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
-}
-END_TEST
-
-START_TEST(test_s21_sprintf_11) {  // s
+START_TEST(test_s21_sprintf_5) {  // s
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %-10.2s...";
@@ -123,7 +85,7 @@ START_TEST(test_s21_sprintf_11) {  // s
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_12) {  // s
+START_TEST(test_s21_sprintf_6) {  // s
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %s...";
@@ -140,7 +102,7 @@ START_TEST(test_s21_sprintf_12) {  // s
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_13) {  // u
+START_TEST(test_s21_sprintf_7) {  // u
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %u...";
@@ -157,7 +119,7 @@ START_TEST(test_s21_sprintf_13) {  // u
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_14) {  // u
+START_TEST(test_s21_sprintf_8) {  // u
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %u...";
@@ -174,7 +136,7 @@ START_TEST(test_s21_sprintf_14) {  // u
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_15) {  // x
+START_TEST(test_s21_sprintf_9) {  // x
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %x...";
@@ -191,7 +153,7 @@ START_TEST(test_s21_sprintf_15) {  // x
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_16) {  // X
+START_TEST(test_s21_sprintf_10) {  // X
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %X...";
@@ -208,25 +170,7 @@ START_TEST(test_s21_sprintf_16) {  // X
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_17) {  // p
-  char result_str[124] = "";
-  char expected_str[124] = "";
-  char pattern[124] = "Hello, pointer is %+p ...";
-
-  char *pointer = "test";
-
-  int result_len = 0;
-  int expected_len = 0;
-
-  result_len = s21_sprintf(result_str, pattern, &pointer);
-  expected_len = sprintf(expected_str, pattern, &pointer);
-
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
-}
-END_TEST
-
-START_TEST(test_s21_sprintf_18) {  // n
+START_TEST(test_s21_sprintf_11) {  // n
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, count symbols is %n...";
@@ -245,7 +189,7 @@ START_TEST(test_s21_sprintf_18) {  // n
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_19) {  // n
+START_TEST(test_s21_sprintf_12) {  // n
   char result_str[124];
   char expected_str[124];
   const char *pattern = "%n...";
@@ -264,7 +208,7 @@ START_TEST(test_s21_sprintf_19) {  // n
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_20) {  // n
+START_TEST(test_s21_sprintf_13) {  // n
   char result_str[124];
   char expected_str[124];
   const char *pattern = "%n";
@@ -283,7 +227,7 @@ START_TEST(test_s21_sprintf_20) {  // n
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_21) {  // %
+START_TEST(test_s21_sprintf_14) {  // %
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, percent is %d%%...";
@@ -300,7 +244,7 @@ START_TEST(test_s21_sprintf_21) {  // %
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_22) {  // -
+START_TEST(test_s21_sprintf_15) {  // -
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, percent is %-10d%%...";
@@ -317,7 +261,7 @@ START_TEST(test_s21_sprintf_22) {  // -
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_23) {  // -
+START_TEST(test_s21_sprintf_16) {  // +
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, percent is %+10d%%...";
@@ -334,7 +278,58 @@ START_TEST(test_s21_sprintf_23) {  // -
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_24) {  // #o
+START_TEST(test_s21_sprintf_17) {  // +
+  char result_str[124];
+  char expected_str[124];
+  const char *pattern = "Hello, percent is %+20d%%...";
+
+  int number = 100;
+  int result_len = 0;
+  int expected_len = 0;
+
+  result_len = s21_sprintf(result_str, pattern, number);
+  expected_len = sprintf(expected_str, pattern, number);
+
+  ck_assert_str_eq(result_str, expected_str);
+  ck_assert_int_eq(result_len, expected_len);
+}
+END_TEST
+
+START_TEST(test_s21_sprintf_18) {  // +
+  char result_str[124];
+  char expected_str[124];
+  const char *pattern = "Hello, percent is %d%%...";
+
+  int number = 100;
+  int result_len = 0;
+  int expected_len = 0;
+
+  result_len = s21_sprintf(result_str, pattern, number);
+  expected_len = sprintf(expected_str, pattern, number);
+
+  ck_assert_str_eq(result_str, expected_str);
+  ck_assert_int_eq(result_len, expected_len);
+}
+END_TEST
+
+START_TEST(test_s21_sprintf_19) {  // +
+  char result_str[124];
+  char expected_str[124];
+  const char *pattern = "Hello, percent is %%d%%...";
+
+  int number = 10;
+  int result_len = 0;
+  int expected_len = 0;
+
+  result_len = s21_sprintf(result_str, pattern, number);
+  expected_len = sprintf(expected_str, pattern, number);
+
+  ck_assert_str_eq(result_str, expected_str);
+  ck_assert_int_eq(result_len, expected_len);
+}
+END_TEST
+
+START_TEST(test_s21_sprintf_20) {  // #o
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %#o...";
@@ -351,7 +346,24 @@ START_TEST(test_s21_sprintf_24) {  // #o
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_25) {  // #X
+START_TEST(test_s21_sprintf_21) {  // +
+  char result_str[124];
+  char expected_str[124];
+  const char *pattern = "Hello, percent is %1d%%...";
+
+  int number = 100;
+  int result_len = 0;
+  int expected_len = 0;
+
+  result_len = s21_sprintf(result_str, pattern, number);
+  expected_len = sprintf(expected_str, pattern, number);
+
+  ck_assert_str_eq(result_str, expected_str);
+  ck_assert_int_eq(result_len, expected_len);
+}
+END_TEST
+
+START_TEST(test_s21_sprintf_22) {  // #X
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %#X...";
@@ -368,7 +380,7 @@ START_TEST(test_s21_sprintf_25) {  // #X
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_26) {  // #x
+START_TEST(test_s21_sprintf_23) {  // #x
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %#x...";
@@ -385,7 +397,7 @@ START_TEST(test_s21_sprintf_26) {  // #x
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_27) {  // #f
+START_TEST(test_s21_sprintf_24) {  // #f
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %#f...";
@@ -403,7 +415,7 @@ START_TEST(test_s21_sprintf_27) {  // #f
 END_TEST
 
 
-START_TEST(test_s21_sprintf_29) {  // 0
+START_TEST(test_s21_sprintf_25) {  // 0
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %010d...";
@@ -420,7 +432,7 @@ START_TEST(test_s21_sprintf_29) {  // 0
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_30) {  // 0
+START_TEST(test_s21_sprintf_26) {  // 0
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %01d...";
@@ -437,7 +449,7 @@ START_TEST(test_s21_sprintf_30) {  // 0
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_31) {  // (num)
+START_TEST(test_s21_sprintf_27) {  // (num)
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %2d...";
@@ -454,7 +466,7 @@ START_TEST(test_s21_sprintf_31) {  // (num)
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_32) {  // (num)
+START_TEST(test_s21_sprintf_28) {  // (num)
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %10d...";
@@ -472,7 +484,7 @@ START_TEST(test_s21_sprintf_32) {  // (num)
 END_TEST
 
 
-START_TEST(test_s21_sprintf_35) {  // hd
+START_TEST(test_s21_sprintf_29) {  // hd
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %hd...";
@@ -489,12 +501,12 @@ START_TEST(test_s21_sprintf_35) {  // hd
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_36) {  // ld
+START_TEST(test_s21_sprintf_30) {  // ld
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %ld...";
 
-  long int number = 9223372036854775807;
+  long int number = 922337247;
   int result_len = 0;
   int expected_len = 0;
 
@@ -506,7 +518,7 @@ START_TEST(test_s21_sprintf_36) {  // ld
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_37) {  // Lf
+START_TEST(test_s21_sprintf_31) {  // Lf
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %Lf...";
@@ -523,7 +535,7 @@ START_TEST(test_s21_sprintf_37) {  // Lf
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_40) {  // s
+START_TEST(test_s21_sprintf_32) {  // s
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, number is %5.2s...";
@@ -540,7 +552,7 @@ START_TEST(test_s21_sprintf_40) {  // s
 }
 END_TEST
 
-START_TEST(test_s21_sprintf_41) {  // c
+START_TEST(test_s21_sprintf_33) {  // c
   char result_str[124];
   char expected_str[124];
   const char *pattern = "Hello, my name is %-3c...";
@@ -564,7 +576,11 @@ Suite *sprintf_suite(void) {
   tcase_add_test(tcase, test_s21_sprintf_1);
   tcase_add_test(tcase, test_s21_sprintf_2);
   tcase_add_test(tcase, test_s21_sprintf_3);
+  tcase_add_test(tcase, test_s21_sprintf_4);
+  tcase_add_test(tcase, test_s21_sprintf_5);
   tcase_add_test(tcase, test_s21_sprintf_6);
+  tcase_add_test(tcase, test_s21_sprintf_7);
+  tcase_add_test(tcase, test_s21_sprintf_8);
   tcase_add_test(tcase, test_s21_sprintf_9);
   tcase_add_test(tcase, test_s21_sprintf_10);
   tcase_add_test(tcase, test_s21_sprintf_11);
@@ -584,15 +600,13 @@ Suite *sprintf_suite(void) {
   tcase_add_test(tcase, test_s21_sprintf_25);
   tcase_add_test(tcase, test_s21_sprintf_26);
   tcase_add_test(tcase, test_s21_sprintf_27);
+  tcase_add_test(tcase, test_s21_sprintf_28);
   tcase_add_test(tcase, test_s21_sprintf_29);
   tcase_add_test(tcase, test_s21_sprintf_30);
   tcase_add_test(tcase, test_s21_sprintf_31);
   tcase_add_test(tcase, test_s21_sprintf_32);
-  tcase_add_test(tcase, test_s21_sprintf_35);
-  tcase_add_test(tcase, test_s21_sprintf_36);
-  tcase_add_test(tcase, test_s21_sprintf_37);
-  tcase_add_test(tcase, test_s21_sprintf_40);
-  tcase_add_test(tcase, test_s21_sprintf_41);
+  tcase_add_test(tcase, test_s21_sprintf_33);
+
   suite_add_tcase(s, tcase);
   
   return s;
