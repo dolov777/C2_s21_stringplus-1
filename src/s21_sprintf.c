@@ -135,10 +135,13 @@ int s21_sprintf(char *buffer, const char *format, ...) {
     double f;
     long double lf;
     char buf[100];
+    char *str_beginning = buffer;
+    int written = 0;
 
     for (traverse = format; *traverse != '\0'; traverse++) {
         while (*traverse != '%' && *traverse != '\0') {
             *buffer++ = *traverse++;
+            written++;
         }
 
         if (*traverse == '\0') break;
@@ -147,6 +150,7 @@ int s21_sprintf(char *buffer, const char *format, ...) {
 
         if (*traverse == '%') {
             *buffer++ = '%';
+            written++;
             continue;
         }
 
@@ -319,8 +323,9 @@ int s21_sprintf(char *buffer, const char *format, ...) {
                 str = buf;
                 break;
             case 'n':
-                *va_arg(args, int *) = (buffer - (char *)0);
-                continue;
+                int *n = va_arg(args, int *);
+                *n = written;
+                break;
             default:
                 str = "";
                 break;
@@ -348,5 +353,5 @@ int s21_sprintf(char *buffer, const char *format, ...) {
 
     *buffer = '\0';
     va_end(args);
-    return 0;
+    return buffer - str_beginning;
 }
