@@ -2,6 +2,227 @@
 
 #include "s21_string.h"
 
+int s21_sprintf(char *buffer, const char *format, ...) {
+  va_list args;
+  va_start(args, format);
+  const char *traverse;
+  const char *str;
+  int i;
+  unsigned int u;
+  double f;
+  long double lf;
+  char buf[100];
+  const char *str_beginning = buffer;
+  int written = 0;
+
+  for (traverse = format; *traverse != '\0'; traverse++) {
+    while (*traverse != '%' && *traverse != '\0') {
+      *buffer++ = *traverse++;
+      written++;
+    }
+
+    if (*traverse == '\0') break;
+
+    traverse++;
+
+    if (*traverse == '%') {
+      *buffer++ = '%';
+      written++;
+      continue;
+    }
+
+    int width = 0;
+    int precision = -1;
+    int left_align = 0;
+    int zero_padding = 0;
+    int plus_sign = 0;
+    int space_sign = 0;
+    int hash_flag = 0;
+
+    process_flags(&traverse, &left_align, &plus_sign, &space_sign, &hash_flag,
+                  &zero_padding);
+
+    while (*traverse >= '0' && *traverse <= '9') {
+      width = width * 10 + (*traverse - '0');
+      traverse++;
+    }
+
+    if (*traverse == '.') {
+      traverse++;
+      precision = 0;
+      while (*traverse >= '0' && *traverse <= '9') {
+        precision = precision * 10 + (*traverse - '0');
+        traverse++;
+      }
+    }
+
+    char length_modifier = process_length_modifier(&traverse);
+
+    switch (*traverse) {
+      case 'd':
+      case 'i':
+        i = get_int_argument(args, length_modifier);
+        if (i < 0) {
+          *buffer++ = '-';
+          written++;
+          i = -i;
+        } else if (space_sign) {
+          *buffer++ = ' ';
+          written++;
+        } else if (plus_sign) {
+          *buffer++ = ' ';
+          written++;
+        }
+        if (plus_sign) {
+          *buffer-- = ' ';
+        }
+
+        if (i > 0 && plus_sign) {
+          *buffer-- = ' ';
+        }
+
+        s21_itoa(i, buf, 10);
+        str = buf;
+        break;
+      case 'u':
+        u = get_unsigned_argument(args, length_modifier);
+        s21_uittoa(u, buf, 10);
+        str = buf;
+        break;
+      case 'o':
+        u = get_unsigned_argument(args, length_modifier);
+        if (hash_flag && u != 0) {
+          *buffer++ = '0';
+          written++;
+        }
+        s21_uittoa(u, buf, 8);
+        str = buf;
+        break;
+      case 'x':
+        u = get_unsigned_argument(args, length_modifier);
+        if (hash_flag && u != 0) {
+          *buffer++ = '0';
+          *buffer++ = 'x';
+          written += 2;
+        }
+        s21_uittoa(u, buf, 16);
+        str = buf;
+        break;
+      case 'X':
+        u = get_unsigned_argument(args, length_modifier);
+        if (hash_flag && u != 0) {
+          *buffer++ = '0';
+          *buffer++ = 'X';
+          written += 2;
+        }
+        s21_uittoa(u, buf, 16);
+
+        for (char *p = buf; *p; p++) *p = to_upper(*p);
+        str = buf;
+        break;
+      case 'f':
+        if (length_modifier == 'L') {
+          lf = va_arg(args, long double);
+          if (precision == -1) {
+            precision = 6;
+          }
+          s21_lftoa(lf, buf, precision);
+        } else {
+          f = va_arg(args, double);
+          if (precision == -1) {
+            precision = 6;
+          }
+          s21_ftoa(f, buf, precision);
+        }
+        str = buf;
+        break;
+      case 's':
+        str = va_arg(args, char *);
+        if (precision >= 0) {
+          s21_strncpy(buf, str, precision);
+          buf[precision] = '\0';
+          str = buf;
+        }
+        break;
+      case 'c':
+        buf[0] = (char)va_arg(args, int);
+        buf[1] = '\0';
+        str = buf;
+        break;
+      case 'n':
+        int *n = va_arg(args, int *);
+        *n = written;
+        continue;
+      default:
+        str = "";
+        break;
+    }
+
+    int len = s21_strlen(str);
+    int padding = (width > len) ? width - len : 0;
+
+    if (!left_align) {
+      while (padding-- > 0) {
+        *buffer++ = zero_padding ? '0' : ' ';
+      }
+    }
+
+    if (i > 0 && plus_sign) {
+      *buffer++ = '+';
+      written++;
+    }
+
+    while (*str) {
+      *buffer++ = *str++;
+      written++;
+    }
+
+    if (left_align) {
+      while (padding-- > 0) {
+        *buffer++ = ' ';
+        written++;
+      }
+    }
+  }
+
+  *buffer = '\0';
+  va_end(args);
+  return buffer - str_beginning;
+}
+
+void process_flags(const char **traverse, int *left_align, int *plus_sign,
+                   int *space_sign, int *hash_flag, int *zero_padding) {
+  while (**traverse == '-' || **traverse == '+' || **traverse == ' ' ||
+         **traverse == '#' || **traverse == '0') {
+    if (**traverse == '-')
+      *left_align = 1;
+    else if (**traverse == '+')
+      *plus_sign = 1;
+    else if (**traverse == ' ')
+      *space_sign = 1;
+    else if (**traverse == '#')
+      *hash_flag = 1;
+    else if (**traverse == '0')
+      *zero_padding = 1;
+    (*traverse)++;
+  }
+}
+
+char process_length_modifier(const char **traverse) {
+  char length_modifier = '\0';
+  if (**traverse == 'h' || **traverse == 'l' || **traverse == 'L') {
+    length_modifier = **traverse;
+    (*traverse)++;
+    if ((length_modifier == 'h' && **traverse == 'h') ||
+        (length_modifier == 'l' && **traverse == 'l')) {
+      length_modifier = length_modifier == 'h' ? 'H' : 'L';
+      (*traverse)++;
+    }
+  }
+
+  return length_modifier;
+}
+
 unsigned int get_unsigned_argument(va_list args, char length_modifier) {
   unsigned int u;
   if (length_modifier == 'h') {
@@ -188,212 +409,4 @@ void s21_lftoa(long double value, char *str, int precision) {
   }
 
   *ptr = '\0';
-}
-
-int s21_sprintf(char *buffer, const char *format, ...) {
-  va_list args;
-  va_start(args, format);
-  const char *traverse;
-  const char *str;
-  int i;
-  unsigned int u;
-  double f;
-  long double lf;
-  char buf[100];
-  const char *str_beginning = buffer;
-  int written = 0;
-
-  for (traverse = format; *traverse != '\0'; traverse++) {
-    while (*traverse != '%' && *traverse != '\0') {
-      *buffer++ = *traverse++;
-      written++;
-    }
-
-    if (*traverse == '\0') break;
-
-    traverse++;
-
-    if (*traverse == '%') {
-      *buffer++ = '%';
-      written++;
-      continue;
-    }
-
-    int width = 0;
-    int precision = -1;
-    int left_align = 0;
-    int zero_padding = 0;
-    int plus_sign = 0;
-    int space_sign = 0;
-    int hash_flag = 0;
-
-    while (*traverse == '-' || *traverse == '+' || *traverse == ' ' ||
-           *traverse == '#' || *traverse == '0') {
-      if (*traverse == '-')
-        left_align = 1;
-      else if (*traverse == '+')
-        plus_sign = 1;
-      else if (*traverse == ' ')
-        space_sign = 1;
-      else if (*traverse == '#')
-        hash_flag = 1;
-      else if (*traverse == '0')
-        zero_padding = 1;
-      traverse++;
-    }
-
-    while (*traverse >= '0' && *traverse <= '9') {
-      width = width * 10 + (*traverse - '0');
-      traverse++;
-    }
-
-    if (*traverse == '.') {
-      traverse++;
-      precision = 0;
-      while (*traverse >= '0' && *traverse <= '9') {
-        precision = precision * 10 + (*traverse - '0');
-        traverse++;
-      }
-    }
-
-    char length_modifier = '\0';
-    if (*traverse == 'h' || *traverse == 'l' || *traverse == 'L') {
-      length_modifier = *traverse;
-      traverse++;
-      if ((length_modifier == 'h' && *traverse == 'h') ||
-          (length_modifier == 'l' && *traverse == 'l')) {
-        length_modifier = length_modifier == 'h' ? 'H' : 'L';
-        traverse++;
-      }
-    }
-
-    switch (*traverse) {
-      case 'd':
-      case 'i':
-        i = get_int_argument(args, length_modifier);
-        if (i < 0) {
-          *buffer++ = '-';
-          written++;
-          i = -i;
-        } else if (space_sign) {
-          *buffer++ = ' ';
-          written++;
-        } else if (plus_sign) {
-          *buffer++ = ' ';
-          written++;
-        }
-        if (plus_sign) {
-          *buffer-- = ' ';
-        }
-
-        if (i > 0 && plus_sign) {
-          *buffer-- = ' ';
-        }
-
-        s21_itoa(i, buf, 10);
-        str = buf;
-        break;
-      case 'u':
-        u = get_unsigned_argument(args, length_modifier);
-        s21_uittoa(u, buf, 10);
-        str = buf;
-        break;
-      case 'o':
-        u = get_unsigned_argument(args, length_modifier);
-        if (hash_flag && u != 0) {
-          *buffer++ = '0';
-          written++;
-        }
-        s21_uittoa(u, buf, 8);
-        str = buf;
-        break;
-      case 'x':
-        u = get_unsigned_argument(args, length_modifier);
-        if (hash_flag && u != 0) {
-          *buffer++ = '0';
-          *buffer++ = 'x';
-          written += 2;
-        }
-        s21_uittoa(u, buf, 16);
-        str = buf;
-        break;
-      case 'X':
-        u = get_unsigned_argument(args, length_modifier);
-        if (hash_flag && u != 0) {
-          *buffer++ = '0';
-          *buffer++ = 'X';
-          written += 2;
-        }
-        s21_uittoa(u, buf, 16);
-        for (char *p = buf; *p; p++) *p = to_upper(*p);
-        str = buf;
-        break;
-      case 'f':
-        if (length_modifier == 'L') {
-          lf = va_arg(args, long double);
-          if (precision == -1) {
-            precision = 6;
-          }
-          s21_lftoa(lf, buf, precision);
-        } else {
-          f = va_arg(args, double);
-          if (precision == -1) {
-            precision = 6;
-          }
-          s21_ftoa(f, buf, precision);
-        }
-        str = buf;
-        break;
-      case 's':
-        str = va_arg(args, char *);
-        if (precision >= 0) {
-          s21_strncpy(buf, str, precision);
-          buf[precision] = '\0';
-          str = buf;
-        }
-        break;
-      case 'c':
-        buf[0] = (char)va_arg(args, int);
-        buf[1] = '\0';
-        str = buf;
-        break;
-      case 'n':
-        int *n = va_arg(args, int *);
-        *n = written;
-        continue;
-      default:
-        str = "";
-        break;
-    }
-
-    int len = s21_strlen(str);
-    int padding = (width > len) ? width - len : 0;
-
-    if (!left_align) {
-      while (padding-- > 0) {
-        *buffer++ = zero_padding ? '0' : ' ';
-      }
-    }
-
-    if (i > 0 && plus_sign) {
-      *buffer++ = '+';
-      written++;
-    }
-
-    while (*str) {
-      *buffer++ = *str++;
-      written++;
-    }
-
-    if (left_align) {
-      while (padding-- > 0) {
-        *buffer++ = ' ';
-        written++;
-      }
-    }
-  }
-
-  *buffer = '\0';
-  va_end(args);
-  return buffer - str_beginning;
 }
