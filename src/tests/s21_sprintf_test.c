@@ -414,7 +414,6 @@ START_TEST(test_s21_sprintf_24) {  // #f
 }
 END_TEST
 
-
 START_TEST(test_s21_sprintf_25) {  // 0
   char result_str[124];
   char expected_str[124];
@@ -482,7 +481,6 @@ START_TEST(test_s21_sprintf_28) {  // (num)
   ck_assert_int_eq(result_len, expected_len);
 }
 END_TEST
-
 
 START_TEST(test_s21_sprintf_29) {  // hd
   char result_str[124];
@@ -608,6 +606,6 @@ Suite *sprintf_suite(void) {
   tcase_add_test(tcase, test_s21_sprintf_33);
 
   suite_add_tcase(s, tcase);
-  
+
   return s;
 }

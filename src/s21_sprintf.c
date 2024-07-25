@@ -357,11 +357,6 @@ int s21_sprintf(char *buffer, const char *format, ...) {
         buf[1] = '\0';
         str = buf;
         break;
-      case 'p':
-        u = (unsigned long)va_arg(args, void *);
-        s21_uittoa(u, buf, 16);
-        str = buf;
-        break;
       case 'n':
         int *n = va_arg(args, int *);
         *n = written;
