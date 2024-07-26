@@ -16,10 +16,7 @@ int s21_sprintf(char *buffer, const char *format, ...) {
   int written = 0;
 
   for (traverse = format; *traverse != '\0'; traverse++) {
-    while (*traverse != '%' && *traverse != '\0') {
-      *buffer++ = *traverse++;
-      written++;
-    }
+    parse_buffer(&traverse, &buffer, &written);
 
     if (*traverse == '\0') break;
 
@@ -42,19 +39,8 @@ int s21_sprintf(char *buffer, const char *format, ...) {
     process_flags(&traverse, &left_align, &plus_sign, &space_sign, &hash_flag,
                   &zero_padding);
 
-    while (*traverse >= '0' && *traverse <= '9') {
-      width = width * 10 + (*traverse - '0');
-      traverse++;
-    }
-
-    if (*traverse == '.') {
-      traverse++;
-      precision = 0;
-      while (*traverse >= '0' && *traverse <= '9') {
-        precision = precision * 10 + (*traverse - '0');
-        traverse++;
-      }
-    }
+    width = parse_width(&traverse, &width);
+    precision = parse_precision(&traverse, &precision);
 
     char length_modifier = process_length_modifier(&traverse);
 
@@ -160,29 +146,8 @@ int s21_sprintf(char *buffer, const char *format, ...) {
 
     int len = s21_strlen(str);
     int padding = (width > len) ? width - len : 0;
-
-    if (!left_align) {
-      while (padding-- > 0) {
-        *buffer++ = zero_padding ? '0' : ' ';
-      }
-    }
-
-    if (i > 0 && plus_sign) {
-      *buffer++ = '+';
-      written++;
-    }
-
-    while (*str) {
-      *buffer++ = *str++;
-      written++;
-    }
-
-    if (left_align) {
-      while (padding-- > 0) {
-        *buffer++ = ' ';
-        written++;
-      }
-    }
+    format_and_align(left_align, padding, zero_padding, &buffer, plus_sign, str,
+                     &written, i);
   }
 
   *buffer = '\0';
@@ -409,4 +374,60 @@ void s21_lftoa(long double value, char *str, int precision) {
   }
 
   *ptr = '\0';
+}
+
+int parse_width(const char **traverse, int *width) {
+  while (**traverse >= '0' && **traverse <= '9') {
+    *width = *width * 10 + (**traverse - '0');
+    (*traverse)++;
+  }
+  return *width;
+}
+
+int parse_precision(const char **traverse, int *precision) {
+  if (**traverse == '.') {
+    (*traverse)++;
+    *precision = 0;
+    while (**traverse >= '0' && **traverse <= '9') {
+      *precision = *precision * 10 + (**traverse - '0');
+      (*traverse)++;
+    }
+  }
+
+  return *precision;
+}
+
+void parse_buffer(const char **traverse, char **buffer, int *written) {
+  while (**traverse != '%' && **traverse != '\0') {
+    *(*buffer)++ = *(*traverse)++;
+    (*written)++;
+  }
+}
+
+void format_and_align(int left_align, int padding, int zero_padding,
+                      char **buffer, int plus_sign, const char *str,
+                      int *written, int i) {
+  if (!left_align) {
+    while (padding-- > 0) {
+      *(*buffer)++ = zero_padding ? '0' : ' ';
+      (*written)++;
+    }
+  }
+
+  if (i > 0 && plus_sign) {
+    *(*buffer)++ = '+';
+    (*written)++;
+  }
+
+  while (*str) {
+    *(*buffer)++ = *str++;
+    (*written)++;
+  }
+
+  if (left_align) {
+    while (padding-- > 0) {
+      *(*buffer)++ = ' ';
+      (*written)++;
+    }
+  }
 }
