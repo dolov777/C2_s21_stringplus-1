@@ -1,5 +1,4 @@
 #include "s21_string_test.h"
-#include <stdio.h>
 
 START_TEST(test_basic) {
   char *str1 = "hello world";
@@ -21,9 +20,8 @@ START_TEST(test_str2_upper) {
   int res_s21 = s21_strncmp(str1, str2, len);
   int res_orig = strncmp(str1, str2, len);
 
-
   ck_assert_int_eq(res_s21, res_orig);
-} 
+}
 END_TEST
 
 START_TEST(test_str1_upper) {
