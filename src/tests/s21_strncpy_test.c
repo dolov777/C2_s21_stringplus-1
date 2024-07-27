@@ -6,10 +6,10 @@ START_TEST(test_basic) {
   char src[] = "!";
   int len = s21_strlen(src);
 
-  char *res_s21 = s21_strncpy(dest_s21, src, len);
-  char *res_orig = strncpy(dest, src, len);
+  s21_strncpy(dest_s21, src, len);
+  strncpy(dest, src, len);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_str_eq(dest_s21, dest);
 }
 END_TEST
 
@@ -19,10 +19,10 @@ START_TEST(test_dest_empty) {
   char src[] = "!";
   int len = s21_strlen(src);
 
-  char *res_s21 = s21_strncpy(dest_s21, src, len);
-  char *res_orig = strncpy(dest, src, len);
+  s21_strncpy(dest_s21, src, len);
+  strncpy(dest, src, len);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_str_eq(dest_s21, dest);
 }
 END_TEST
 
@@ -32,10 +32,10 @@ START_TEST(test_src_empty) {
   char src[] = "";
   int len = s21_strlen(src);
 
-  char *res_s21 = s21_strncpy(dest_s21, src, len);
-  char *res_orig = strncpy(dest, src, len);
+  s21_strncpy(dest_s21, src, len);
+  strncpy(dest, src, len);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_str_eq(dest_s21, dest);
 }
 END_TEST
 
@@ -45,10 +45,10 @@ START_TEST(test_both_empty) {
   char src[] = "";
   int len = s21_strlen(src);
 
-  char *res_s21 = s21_strncpy(dest_s21, src, len);
-  char *res_orig = strncpy(dest, src, len);
+  s21_strncpy(dest_s21, src, len);
+  strncpy(dest, src, len);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_str_eq(dest_s21, dest);
 }
 END_TEST
 
@@ -58,10 +58,10 @@ START_TEST(test_len_zero) {
   char src[] = "world";
   int len = 0;
 
-  char *res_s21 = s21_strncpy(dest_s21, src, len);
-  char *res_orig = strncpy(dest, src, len);
+  s21_strncpy(dest_s21, src, len);
+  strncpy(dest, src, len);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_str_eq(dest_s21, dest);
 }
 END_TEST
 
@@ -71,10 +71,10 @@ START_TEST(test_spaces) {
   char src[] = "   !";
   int len = s21_strlen(src);
 
-  char *res_s21 = s21_strncpy(dest_s21, src, len);
-  char *res_orig = strncpy(dest, src, len);
+  s21_strncpy(dest_s21, src, len);
+  strncpy(dest, src, len);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_str_eq(dest_s21, dest);
 }
 END_TEST
 
@@ -84,10 +84,10 @@ START_TEST(test_break) {
   char src[] = "   !\n\n\n\n";
   int len = s21_strlen(src);
 
-  char *res_s21 = s21_strncpy(dest_s21, src, len);
-  char *res_orig = strncpy(dest, src, len);
+  s21_strncpy(dest_s21, src, len);
+  strncpy(dest, src, len);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_str_eq(dest_s21, dest);
 }
 END_TEST
 
@@ -97,10 +97,10 @@ START_TEST(test_len_larger) {
   char src[] = "world";
   int len = 20;
 
-  char *res_s21 = s21_strncpy(dest_s21, src, len);
-  char *res_orig = strncpy(dest, src, len);
+  s21_strncpy(dest_s21, src, len);
+  strncpy(dest, src, len);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_str_eq(dest_s21, dest);
 }
 END_TEST
 
@@ -110,10 +110,10 @@ START_TEST(test_line_break) {
   char src[] = "world\0";
   int len = 20;
 
-  char *res_s21 = s21_strncpy(dest_s21, src, len);
-  char *res_orig = strncpy(dest, src, len);
+  s21_strncpy(dest_s21, src, len);
+  strncpy(dest, src, len);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_str_eq(dest_s21, dest);
 }
 END_TEST
 

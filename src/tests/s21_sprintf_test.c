@@ -1,569 +1,569 @@
 #include "s21_string_test.h"
 
 START_TEST(test_s21_sprintf_1) {  // c
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, my name is %c...";
 
   char symbol = 'A';
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, symbol);
-  expected_len = sprintf(expected_str, pattern, symbol);
+  res_s21 = s21_sprintf(dest_s21, pattern, symbol);
+  res_orig = sprintf(dest_orig, pattern, symbol);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_2) {  // d
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, my age is %d...";
 
   int age = 17;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, age);
-  expected_len = sprintf(expected_str, pattern, age);
+  res_s21 = s21_sprintf(dest_s21, pattern, age);
+  res_orig = sprintf(dest_orig, pattern, age);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_3) {  // i
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, my age is %i...";
 
   int age = -17;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, age);
-  expected_len = sprintf(expected_str, pattern, age);
+  res_s21 = s21_sprintf(dest_s21, pattern, age);
+  res_orig = sprintf(dest_orig, pattern, age);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_4) {  // f
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %f...";
 
   float number = 27.777;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_5) {  // s
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %-10.2s...";
 
   char str[5] = "123";
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, str);
-  expected_len = sprintf(expected_str, pattern, str);
+  res_s21 = s21_sprintf(dest_s21, pattern, str);
+  res_orig = sprintf(dest_orig, pattern, str);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_6) {  // s
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %s...";
 
   char str[4] = "123";
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, str);
-  expected_len = sprintf(expected_str, pattern, str);
+  res_s21 = s21_sprintf(dest_s21, pattern, str);
+  res_orig = sprintf(dest_orig, pattern, str);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_7) {  // u
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %u...";
 
   unsigned int number = 123;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_8) {  // u
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %u...";
 
   unsigned int number = -123;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_9) {  // x
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %x...";
 
   unsigned int number = 0xFF;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_10) {  // X
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %X...";
 
   unsigned int number = 0xFF;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_11) {  // n
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, count symbols is %n...";
 
   int result_symbols;
   int expected_symbols;
 
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, &result_symbols);
-  expected_len = sprintf(expected_str, pattern, &expected_symbols);
+  res_s21 = s21_sprintf(dest_s21, pattern, &result_symbols);
+  res_orig = sprintf(dest_orig, pattern, &expected_symbols);
 
   ck_assert_int_eq(result_symbols, expected_symbols);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_12) {  // n
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "%n...";
 
   int result_symbols;
   int expected_symbols;
 
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, &result_symbols);
-  expected_len = sprintf(expected_str, pattern, &expected_symbols);
+  res_s21 = s21_sprintf(dest_s21, pattern, &result_symbols);
+  res_orig = sprintf(dest_orig, pattern, &expected_symbols);
 
   ck_assert_int_eq(result_symbols, expected_symbols);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_13) {  // n
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "%n";
 
   int result_symbols;
   int expected_symbols;
 
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, &result_symbols);
-  expected_len = sprintf(expected_str, pattern, &expected_symbols);
+  res_s21 = s21_sprintf(dest_s21, pattern, &result_symbols);
+  res_orig = sprintf(dest_orig, pattern, &expected_symbols);
 
   ck_assert_int_eq(result_symbols, expected_symbols);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_14) {  // %
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, percent is %d%%...";
 
   int number = 100;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_15) {  // -
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, percent is %-10d%%...";
 
   int number = 100;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_16) {  // +
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, percent is %+10d%%...";
 
   int number = 100;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_17) {  // +
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, percent is %+20d%%...";
 
   int number = 100;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_18) {  // +
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, percent is %d%%...";
 
   int number = 100;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_19) {  // +
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, percent is %%d%%...";
 
   int number = 10;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_20) {  // #o
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %#o...";
 
   int number = 7;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_21) {  // +
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, percent is %1d%%...";
 
   int number = 100;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_22) {  // #X
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %#X...";
 
   int number = 0xFF;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_23) {  // #x
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %#x...";
 
   int number = 0xFF;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_24) {  // #f
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %#f...";
 
   float number = 10;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_25) {  // 0
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %010d...";
 
   int number = 10;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_26) {  // 0
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %01d...";
 
   int number = 10;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_27) {  // (num)
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %2d...";
 
   int number = 10;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_28) {  // (num)
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %10d...";
 
   int number = 10;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_29) {  // hd
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %hd...";
 
   short int number = 32769;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_30) {  // ld
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %ld...";
 
   long int number = 922337247;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_31) {  // Lf
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %Lf...";
 
   long double number = 113132.12315149;
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, number);
-  expected_len = sprintf(expected_str, pattern, number);
+  res_s21 = s21_sprintf(dest_s21, pattern, number);
+  res_orig = sprintf(dest_orig, pattern, number);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_32) {  // s
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, number is %5.2s...";
 
   char str[5] = "123";
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, str);
-  expected_len = sprintf(expected_str, pattern, str);
+  res_s21 = s21_sprintf(dest_s21, pattern, str);
+  res_orig = sprintf(dest_orig, pattern, str);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_s21_sprintf_33) {  // c
-  char result_str[124];
-  char expected_str[124];
+  char dest_s21[124];
+  char dest_orig[124];
   const char *pattern = "Hello, my name is %-3c...";
 
   char symbol = 'F';
-  int result_len = 0;
-  int expected_len = 0;
+  int res_s21 = 0;
+  int res_orig = 0;
 
-  result_len = s21_sprintf(result_str, pattern, symbol);
-  expected_len = sprintf(expected_str, pattern, symbol);
+  res_s21 = s21_sprintf(dest_s21, pattern, symbol);
+  res_orig = sprintf(dest_orig, pattern, symbol);
 
-  ck_assert_str_eq(result_str, expected_str);
-  ck_assert_int_eq(result_len, expected_len);
+  ck_assert_str_eq(dest_s21, dest_orig);
+  ck_assert_int_eq(res_s21, res_orig);
 }
 END_TEST
 

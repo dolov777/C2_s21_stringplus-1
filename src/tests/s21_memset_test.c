@@ -9,7 +9,7 @@ START_TEST(test_basic) {
   char* res_s21 = s21_memset(str1, c, n);
   char* res_orig = memset(str2, c, n);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_mem_eq(res_s21, res_orig, n);
 }
 END_TEST
 
@@ -17,12 +17,12 @@ START_TEST(test_full) {
   char str1[] = "abcdef";
   char str2[] = "abcdef";
   char c = 'A';
-  int n = s21_strlen(str2);
+  s21_size_t n = s21_strlen(str2);
 
   char* res_s21 = s21_memset(str1, c, n);
   char* res_orig = memset(str2, c, n);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_mem_eq(res_s21, res_orig, n);
 }
 END_TEST
 
@@ -35,7 +35,7 @@ START_TEST(test_str_empty) {
   char* res_s21 = s21_memset(str1, c, n);
   char* res_orig = memset(str2, c, n);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_mem_eq(res_s21, res_orig, n);
 }
 END_TEST
 
@@ -43,12 +43,12 @@ START_TEST(test_space) {
   char str1[] = "   ";
   char str2[] = "   ";
   char c = ' ';
-  int n = s21_strlen(str2);
+  s21_size_t n = s21_strlen(str2);
 
   char* res_s21 = s21_memset(str1, c, n);
   char* res_orig = memset(str2, c, n);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_mem_eq(res_s21, res_orig, n);
 }
 END_TEST
 
@@ -56,12 +56,12 @@ START_TEST(test_break) {
   char str1[] = "\n\n\n\n";
   char str2[] = "\n\n\n\n";
   char c = '\n';
-  int n = s21_strlen(str2);
+  s21_size_t n = s21_strlen(str2);
 
   char* res_s21 = s21_memset(str1, c, n);
   char* res_orig = memset(str2, c, n);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_mem_eq(res_s21, res_orig, n);
 }
 END_TEST
 
@@ -69,12 +69,12 @@ START_TEST(test_line_break) {
   char str1[] = "\0\0\0\0";
   char str2[] = "\0\0\0\0";
   char c = '\0';
-  int n = s21_strlen(str2);
+  s21_size_t n = s21_strlen(str2);
 
   char* res_s21 = s21_memset(str1, c, n);
   char* res_orig = memset(str2, c, n);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_mem_eq(res_s21, res_orig, n);
 }
 END_TEST
 
@@ -87,7 +87,7 @@ START_TEST(test_c_symbol) {
   char* res_s21 = s21_memset(str1, c, n);
   char* res_orig = memset(str2, c, n);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_mem_eq(res_s21, res_orig, n);
 }
 END_TEST
 
@@ -100,7 +100,7 @@ START_TEST(test_n_larger) {
   char* res_s21 = s21_memset(str1, c, n);
   char* res_orig = memset(str2, c, n);
 
-  ck_assert_str_eq(res_s21, res_orig);
+  ck_assert_mem_eq(res_s21, res_orig, n);
 }
 END_TEST
 

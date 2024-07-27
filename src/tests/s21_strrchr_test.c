@@ -7,7 +7,7 @@ START_TEST(test_basic) {
   char *res_s21 = s21_strrchr(str, c);
   char *res_orig = strrchr(str, c);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -18,7 +18,7 @@ START_TEST(test_char_equals) {
   char *res_s21 = s21_strrchr(str, c);
   char *res_orig = strrchr(str, c);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -29,7 +29,7 @@ START_TEST(test_not_found) {
   char *res_s21 = s21_strrchr(str, c);
   char *res_orig = strrchr(str, c);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -40,7 +40,7 @@ START_TEST(test_str_empty) {
   char *res_s21 = s21_strrchr(str, c);
   char *res_orig = strrchr(str, c);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -51,7 +51,7 @@ START_TEST(test_line_break) {
   char *res_s21 = s21_strrchr(str, c);
   char *res_orig = strrchr(str, c);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -62,7 +62,7 @@ START_TEST(test_c_break) {
   char *res_s21 = s21_strrchr(str, c);
   char *res_orig = strrchr(str, c);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
@@ -73,7 +73,7 @@ START_TEST(test_c_space) {
   char *res_s21 = s21_strrchr(str, c);
   char *res_orig = strrchr(str, c);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 

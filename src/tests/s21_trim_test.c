@@ -8,7 +8,7 @@ START_TEST(test_basic) {
   char *res_orig = "Hello, world!\n";
 
   ck_assert_str_eq(res_s21, res_orig);
-  free(res_s21);
+  if (res_s21) free(res_s21);
 }
 END_TEST
 
@@ -20,7 +20,7 @@ START_TEST(test_not_found) {
   char *res_orig = "Hello, world!";
 
   ck_assert_str_eq(res_s21, res_orig);
-  free(res_s21);
+  if (res_s21) free(res_s21);
 }
 END_TEST
 
@@ -32,7 +32,7 @@ START_TEST(test_break) {
   char *res_orig = "Hello, world!";
 
   ck_assert_str_eq(res_s21, res_orig);
-  free(res_s21);
+  if (res_s21) free(res_s21);
 }
 END_TEST
 
@@ -43,7 +43,7 @@ START_TEST(test_src_null) {
   char *res_s21 = s21_trim(src, trim_chars);
 
   ck_assert_ptr_eq(res_s21, s21_NULL);
-  free(res_s21);
+  if (res_s21) free(res_s21);
 }
 END_TEST
 
@@ -54,7 +54,7 @@ START_TEST(test_trim_chars_null) {
   char *res_s21 = s21_trim(src, trim_chars);
 
   ck_assert_ptr_eq(res_s21, s21_NULL);
-  free(res_s21);
+  if (res_s21) free(res_s21);
 }
 END_TEST
 
@@ -66,7 +66,7 @@ START_TEST(test_line_break) {
   char *res_orig = "hello world";
 
   ck_assert_str_eq(res_s21, res_orig);
-  free(res_s21);
+  if (res_s21) free(res_s21);
 }
 END_TEST
 
@@ -78,7 +78,7 @@ START_TEST(test_spaces) {
   char *res_orig = "";
 
   ck_assert_str_eq(res_s21, res_orig);
-  free(res_s21);
+  if (res_s21) free(res_s21);
 }
 END_TEST
 

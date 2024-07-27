@@ -1,7 +1,7 @@
 #include "s21_string_test.h"
 
 START_TEST(test_basic) {
-  char *str = "hello world";
+  char str[] = "hello world";
   char c = 'o';
 
   char *res_s21 = s21_strchr(str, c);
@@ -12,7 +12,7 @@ START_TEST(test_basic) {
 END_TEST
 
 START_TEST(test_char_equals) {
-  char *str = "o";
+  char str[] = "o";
   char c = 'o';
 
   char *res_s21 = s21_strchr(str, c);
@@ -23,7 +23,7 @@ START_TEST(test_char_equals) {
 END_TEST
 
 START_TEST(test_not_found) {
-  char *str = "hello world";
+  char str[] = "hello world";
   char c = 'r';
 
   char *res_s21 = s21_strchr(str, c);
@@ -34,7 +34,7 @@ START_TEST(test_not_found) {
 END_TEST
 
 START_TEST(test_str_empty) {
-  char *str = "";
+  char str[] = "";
   char c = 'o';
 
   char *res_s21 = s21_strchr(str, c);
@@ -45,7 +45,7 @@ START_TEST(test_str_empty) {
 END_TEST
 
 START_TEST(test_line_break) {
-  char *str = "\0\0\0";
+  char str[] = "\0\0\0";
   char c = '\0';
 
   char *res_s21 = s21_strchr(str, c);
@@ -56,7 +56,7 @@ START_TEST(test_line_break) {
 END_TEST
 
 START_TEST(test_c_break) {
-  char *str = "hello";
+  char str[] = "hello";
   char c = '\0';
 
   char *res_s21 = s21_strchr(str, c);
@@ -67,7 +67,7 @@ START_TEST(test_c_break) {
 END_TEST
 
 START_TEST(test_c_space) {
-  char *str = "hello world ";
+  char str[] = "hello world ";
   char c = ' ';
 
   char *res_s21 = s21_strchr(str, c);

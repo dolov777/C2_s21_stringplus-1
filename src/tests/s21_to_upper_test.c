@@ -36,7 +36,6 @@ START_TEST(test_str_null) {
   char *res_s21 = s21_to_upper(str);
 
   ck_assert_ptr_eq(res_s21, s21_NULL);
-  free(res_s21);
 }
 END_TEST
 

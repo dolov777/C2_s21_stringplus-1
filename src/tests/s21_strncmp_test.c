@@ -3,7 +3,7 @@
 START_TEST(test_basic) {
   char *str1 = "hello world";
   char *str2 = "hello world";
-  int len = s21_strlen(str2);
+  s21_size_t len = s21_strlen(str2);
 
   int res_s21 = s21_strncmp(str1, str2, len);
   int res_orig = strncmp(str1, str2, len);
@@ -15,7 +15,7 @@ END_TEST
 START_TEST(test_str2_upper) {
   char *str1 = "hello world";
   char *str2 = "helLo world";
-  int len = s21_strlen(str2);
+  s21_size_t len = s21_strlen(str2);
 
   int res_s21 = s21_strncmp(str1, str2, len);
   int res_orig = strncmp(str1, str2, len);
@@ -27,7 +27,7 @@ END_TEST
 START_TEST(test_str1_upper) {
   char *str1 = "hellO world";
   char *str2 = "helLo world";
-  int len = s21_strlen(str2);
+  s21_size_t len = s21_strlen(str2);
 
   int res_s21 = s21_strncmp(str1, str2, len);
   int res_orig = strncmp(str1, str2, len);
@@ -39,7 +39,7 @@ END_TEST
 START_TEST(test_numbers) {
   char *str1 = "0123456789";
   char *str2 = "0123456789";
-  int len = s21_strlen(str2);
+  s21_size_t len = s21_strlen(str2);
 
   int res_s21 = s21_strncmp(str1, str2, len);
   int res_orig = strncmp(str1, str2, len);
@@ -51,7 +51,7 @@ END_TEST
 START_TEST(test_str1_empty) {
   char *str1 = "";
   char *str2 = "0123456789";
-  int len = s21_strlen(str2);
+  s21_size_t len = s21_strlen(str2);
 
   int res_s21 = s21_strncmp(str1, str2, len);
   int res_orig = strncmp(str1, str2, len);
@@ -63,7 +63,7 @@ END_TEST
 START_TEST(test_str2_empty) {
   char *str1 = "0123456789";
   char *str2 = "";
-  int len = s21_strlen(str2);
+  s21_size_t len = s21_strlen(str2);
 
   int res_s21 = s21_strncmp(str1, str2, len);
   int res_orig = strncmp(str1, str2, len);
@@ -75,7 +75,7 @@ END_TEST
 START_TEST(test_both_empty) {
   char *str1 = "";
   char *str2 = "";
-  int len = s21_strlen(str2);
+  s21_size_t len = s21_strlen(str2);
 
   int res_s21 = s21_strncmp(str1, str2, len);
   int res_orig = strncmp(str1, str2, len);

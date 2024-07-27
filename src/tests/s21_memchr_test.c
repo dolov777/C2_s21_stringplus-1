@@ -2,111 +2,111 @@
 
 START_TEST(test_basic) {
   char str[] = "hello world";
-  int len = s21_strlen(str);
+  s21_size_t len = s21_strlen(str);
 
   char *res_s21 = s21_memchr(str, 'l', len);
   char *res_orig = memchr(str, 'l', len);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_str_empty) {
   char str[] = "";
-  int len = s21_strlen(str);
+  s21_size_t len = s21_strlen(str);
 
   char *res_s21 = s21_memchr(str, 'l', len);
   char *res_orig = memchr(str, 'l', len);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_first_match) {
   char str[] = "hello world";
-  int len = s21_strlen(str);
+  s21_size_t len = s21_strlen(str);
 
   char *res_s21 = s21_memchr(str, 'h', len);
   char *res_orig = memchr(str, 'h', len);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_end_match) {
   char str[] = "hello world";
-  int len = s21_strlen(str);
+  s21_size_t len = s21_strlen(str);
 
   char *res_s21 = s21_memchr(str, 'd', len);
   char *res_orig = memchr(str, 'd', len);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_spaces) {
   char str[] = "             ";
-  int len = s21_strlen(str);
+  s21_size_t len = s21_strlen(str);
 
   char *res_s21 = s21_memchr(str, ' ', len);
   char *res_orig = memchr(str, ' ', len);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_space) {
   char str[] = "hello world";
-  int len = s21_strlen(str);
+  s21_size_t len = s21_strlen(str);
 
   char *res_s21 = s21_memchr(str, ' ', len);
   char *res_orig = memchr(str, ' ', len);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_break) {
   char str[] = "hello world\n";
-  int len = s21_strlen(str);
+  s21_size_t len = s21_strlen(str);
 
   char *res_s21 = s21_memchr(str, '\n', len);
   char *res_orig = memchr(str, '\n', len);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_line_break) {
   char str[] = "hello world\0";
-  int len = s21_strlen(str);
+  s21_size_t len = s21_strlen(str);
 
   char *res_s21 = s21_memchr(str, '\0', len);
   char *res_orig = memchr(str, '\0', len);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_not_found) {
   char str[] = "hello world\0";
-  int len = s21_strlen(str);
+  s21_size_t len = s21_strlen(str);
 
   char *res_s21 = s21_memchr(str, '1', len);
   char *res_orig = memchr(str, '1', len);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 
 START_TEST(test_c_numbers) {
   char str[] = "hello world";
-  int len = s21_strlen(str);
+  s21_size_t len = s21_strlen(str);
 
   char *res_s21 = s21_memchr(str, -2, len);
   char *res_orig = memchr(str, -2, len);
 
-  ck_assert_ptr_eq(res_s21, res_orig);
+  ck_assert_pstr_eq(res_s21, res_orig);
 }
 END_TEST
 

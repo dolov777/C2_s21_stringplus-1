@@ -1,7 +1,7 @@
 #include "s21_string_test.h"
 
 START_TEST(test_basic) {
-  char *str = "Hello World";
+  char str[] = "Hello World";
 
   s21_size_t res_s21 = s21_strlen(str);
 
@@ -10,7 +10,7 @@ START_TEST(test_basic) {
 END_TEST
 
 START_TEST(test_str_numbers) {
-  char *str = "123";
+  char str[] = "123";
 
   s21_size_t res_s21 = s21_strlen(str);
 
@@ -19,7 +19,7 @@ START_TEST(test_str_numbers) {
 END_TEST
 
 START_TEST(test_str_empty) {
-  char *str = "";
+  char str[] = "";
 
   s21_size_t res_s21 = s21_strlen(str);
 
@@ -28,7 +28,7 @@ START_TEST(test_str_empty) {
 END_TEST
 
 START_TEST(test_str_break) {
-  char *str = "abc\n";
+  char str[] = "abc\n";
 
   s21_size_t res_s21 = s21_strlen(str);
 
@@ -37,7 +37,7 @@ START_TEST(test_str_break) {
 END_TEST
 
 START_TEST(test_str_line_break) {
-  char *str = "abc\0";
+  char str[] = "abc\0";
 
   s21_size_t res_s21 = s21_strlen(str);
 
@@ -46,7 +46,7 @@ START_TEST(test_str_line_break) {
 END_TEST
 
 START_TEST(test_str_breaks) {
-  char *str = "\n\n\n\n";
+  char str[] = "\n\n\n\n";
 
   s21_size_t res_s21 = s21_strlen(str);
 
@@ -55,7 +55,7 @@ START_TEST(test_str_breaks) {
 END_TEST
 
 START_TEST(test_str_line_breaks) {
-  char *str = "\0\0\0\0";
+  char str[] = "\0\0\0\0";
 
   s21_size_t res_s21 = s21_strlen(str);
 
